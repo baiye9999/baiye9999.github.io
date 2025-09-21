@@ -1,0 +1,53 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="member1Bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="member1Text" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE4E1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="flowerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:0.3" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景圆形 -->
+  <rect width="100%" height="100%" fill="url(#member1Bg)" rx="100"/>
+  
+  <!-- 花田背景效果 -->
+  <circle cx="100" cy="100" r="85" fill="url(#flowerBg)"/>
+  
+  <!-- 黄色花朵装饰 -->
+  <circle cx="50" cy="50" r="8" fill="#FFD700" opacity="0.9"/>
+  <circle cx="150" cy="50" r="6" fill="#FFD700" opacity="0.8"/>
+  <circle cx="50" cy="150" r="6" fill="#FFD700" opacity="0.8"/>
+  <circle cx="150" cy="150" r="8" fill="#FFD700" opacity="0.9"/>
+  <circle cx="100" cy="40" r="5" fill="#FFD700" opacity="0.7"/>
+  <circle cx="100" cy="160" r="5" fill="#FFD700" opacity="0.7"/>
+  <circle cx="40" cy="100" r="5" fill="#FFD700" opacity="0.7"/>
+  <circle cx="160" cy="100" r="5" fill="#FFD700" opacity="0.7"/>
+  
+  <!-- 中心头像区域 -->
+  <circle cx="100" cy="100" r="55" fill="white" opacity="0.95"/>
+  
+  <!-- 花田公主形象 -->
+  <text x="100" y="85" font-family="Arial, sans-serif" font-size="32" text-anchor="middle">👸</text>
+  
+  <!-- 角色特征装饰 -->
+  <circle cx="85" cy="75" r="3" fill="#87CEEB" opacity="0.8"/>
+  <circle cx="115" cy="75" r="3" fill="#87CEEB" opacity="0.8"/>
+  
+  <!-- 名字 -->
+  <text x="100" y="115" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="url(#member1Text)">花田</text>
+  <text x="100" y="130" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="url(#member1Text)">公主</text>
+  
+  <!-- 职位 -->
+  <text x="100" y="150" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="white">核心成员</text>
+  
+  <!-- 标签 -->
+  <text x="100" y="170" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#FFE4E1">金色魅力</text>
+</svg>
