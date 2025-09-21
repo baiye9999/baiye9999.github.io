@@ -367,8 +367,7 @@ body {
     min-height: 500px;
     display: flex;
     align-items: center;
-    /* 默认半透明背景，当没有背景图片时显示 */
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 100%);
+    /* 背景由JavaScript动态设置 */
 }
 
 .member-main-display::before {
@@ -735,8 +734,7 @@ body {
     min-height: 500px;
     display: flex;
     align-items: center;
-    /* 默认半透明背景，当没有背景图片时显示 */
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 100%);
+    /* 背景由JavaScript动态设置 */
 }
 
 .member-main-display::before {
