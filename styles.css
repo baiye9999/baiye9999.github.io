@@ -266,9 +266,145 @@ body {
 .members-carousel {
     position: relative;
     width: 100%;
-    overflow: hidden;
 }
 
+.members-container {
+    position: relative;
+    width: 100%;
+}
+
+.members-slide {
+    display: none;
+    width: 100%;
+}
+
+.members-slide.active {
+    display: block;
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.member-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+}
+
+.member-avatar {
+    margin-bottom: 20px;
+}
+
+.member-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.member-info h3 {
+    font-size: 1.5rem;
+    color: #FF69B4;
+    margin-bottom: 10px;
+}
+
+.member-role {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.member-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.tag {
+    background: #FFB6C1;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.member-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.members-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.members-btn {
+    background: rgba(255, 105, 180, 0.8);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.members-btn:hover {
+    background: rgba(255, 20, 147, 0.9);
+    transform: scale(1.1);
+}
+
+.members-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.members-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 105, 180, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.members-indicator.active {
+    background: #FF69B4;
+    transform: scale(1.2);
+}
+
+.members-indicator:hover {
+    background: rgba(255, 105, 180, 0.6);
+}
 .members-container {
     position: relative;
     width: 100%;
