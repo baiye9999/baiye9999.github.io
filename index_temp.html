@@ -48,36 +48,31 @@
                     <img src="images/hero/hero-banner-1.svg" alt="睡不着打给我百业组织">
                 </div>
                 <div class="hero-slide">
-                    <img src="images/hero/hero-banner-2.svg" alt="睡不着打给我百业组织">
+                    <img src="images/hero/hero-banner-2.svg" alt="深夜陪伴">
                 </div>
                 <div class="hero-slide">
-                    <img src="images/hero/hero-banner-3.svg" alt="睡不着打给我百业组织">
+                    <img src="images/hero/hero-banner-3.svg" alt="百业活动">
+                </div>
+                <div class="hero-controls">
+                    <button class="hero-btn prev" onclick="changeSlide(-1)">❮</button>
+                    <button class="hero-btn next" onclick="changeSlide(1)">❯</button>
+                </div>
+                <div class="hero-indicators">
+                    <span class="indicator active" onclick="currentSlide(1)"></span>
+                    <span class="indicator" onclick="currentSlide(2)"></span>
+                    <span class="indicator" onclick="currentSlide(3)"></span>
                 </div>
             </div>
-            <div class="hero-controls">
-                <button class="hero-btn prev" onclick="changeSlide(-1)">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="hero-btn next" onclick="changeSlide(1)">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            <div class="hero-indicators">
-                <span class="indicator active" onclick="currentSlide(1)"></span>
-                <span class="indicator" onclick="currentSlide(2)"></span>
-                <span class="indicator" onclick="currentSlide(3)"></span>
-            </div>
         </div>
-        <div class="hero-content">
-            <div class="container">
-                <div class="hero-text">
-                    <h1>睡不着打给我</h1>
-                    <p>展示各流派咸鱼人生的风采</p>
-                    <p>我们相信，每个人都有自己的独特价值</p>
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary">了解我们</button>
-                        <button class="btn btn-secondary">加入百业</button>
-                    </div>
+    </section>
+
+    <!-- 欢迎区域 -->
+    <section class="welcome-section">
+        <div class="container">
+            <div class="welcome-content">
+                <div class="welcome-text">
+                    <h2>欢迎来到睡不着打给我的世界</h2>
+                    <p>睡不着打给我是一个温暖的百业组织，致力于为夜猫子们提供陪伴和交流平台。在这里，您可以找到志同道合的伙伴，分享深夜的思绪，体验各种精彩活动，感受百业大家庭的温暖。</p>
                 </div>
                 <div class="welcome-image">
                     <img src="images/hero/welcome-image.svg" alt="睡不着打给我">
@@ -85,6 +80,34 @@
             </div>
         </div>
     </section>
+
+    <!-- 内容区块 -->
+    <section class="content-blocks">
+        <div class="container">
+            <div class="blocks-grid">
+                <!-- 百业混剪 -->
+                <div class="content-block">
+                    <div class="block-image">
+                        <img src="images/activities/video-mix.svg" alt="百业混剪">
+                    </div>
+                    <div class="block-content">
+                        <h3>百业混剪</h3>
+                        <p>生而微末者，侠为其声</p>
+                        <button class="btn btn-pink">查看混剪</button>
+                    </div>
+                </div>
+
+                <!-- 百业活动 -->
+                <div class="content-block">
+                    <div class="block-image">
+                        <img src="images/activities/activity-main.svg" alt="百业活动">
+                    </div>
+                    <div class="block-content">
+                        <h3>百业活动</h3>
+                        <p>各行各业，精彩纷呈</p>
+                        <button class="btn btn-pink">参与活动</button>
+                    </div>
+                </div>
 
     <!-- 百业人员 -->
     <section id="members" class="members-section">
@@ -306,8 +329,7 @@
         </div>
     </section>
 
-    <!-- 加入我们 -->
-    <section id="join" class="join-section">
+    <!-- 加入我们 -->    <section id="join" class="join-section">
         <div class="container">
             <div class="join-content">
                 <div class="join-info">
@@ -316,9 +338,23 @@
                     <p>睡不着打给我致力于展示各流派咸鱼人生的风采。</p>
                     <p>我们相信，每个人都有自己的独特价值。</p>
                     <p>睡不着打给我致力于展示各流派咸鱼人生的风采。</p>
-                    <div class="join-buttons">
-                        <button class="btn btn-primary">立即加入</button>
-                        <button class="btn btn-secondary">了解更多</button>
+                    <p>我们相信，每个人都有自己的独特价值。</p>
+                </div>
+                
+                <div class="join-details">
+                    <div class="join-item">
+                        <h4>睡不着打给我</h4>
+                        <p>展示各流派咸鱼人才，弘扬咸鱼精神</p>
+                    </div>
+                    
+                    <div class="join-item">
+                        <h4>加入我们</h4>
+                        <p>加入我们，共建美好燕云</p>
+                    </div>
+                    
+                    <div class="join-item">
+                        <h4>关注我们</h4>
+                        <p>抖音：松仁糖</p>
                     </div>
                 </div>
             </div>
@@ -328,32 +364,9 @@
     <!-- 页脚 -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>睡不着打给我</h3>
-                    <p>展示各流派咸鱼人生的风采</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#home">首页</a>
-                    <a href="#videos">百业混剪</a>
-                    <a href="#activities">百业活动</a>
-                    <a href="#members">百业人员</a>
-                    <a href="#join">加入我们</a>
-                </div>
-                <div class="footer-social">
-                    <p>抖音：松仁糖</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy;2025 睡不着打给我，保留所有权</p>
-            </div>
+            <p>&copy; 2025 睡不着打给我. 保留所有权利.</p>
         </div>
     </footer>
-
-    <!-- 返回顶部按钮 -->
-    <button id="backToTop" class="back-to-top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
 
     <script src="script.js"></script>
 </body>
