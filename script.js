@@ -386,3 +386,30 @@ document.addEventListener('keydown', (e) => {
         changeSlide(1);
     }
 });
+
+// 确保DOM加载完成后初始化轮播
+document.addEventListener('DOMContentLoaded', function() {
+    // 重新获取轮播元素
+    const slides = document.querySelectorAll('.hero-slide');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    if (slides.length > 0) {
+        // 确保第一张图片显示
+        showSlide(0);
+        
+        // 启动自动轮播
+        let slideInterval = setInterval(autoSlide, 5000);
+        
+        // 鼠标悬停时暂停自动轮播
+        const heroCarousel = document.querySelector('.hero-carousel');
+        if (heroCarousel) {
+            heroCarousel.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            heroCarousel.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(autoSlide, 5000);
+            });
+        }
+    }
+});
