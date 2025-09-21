@@ -29,14 +29,75 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// 视频轮播
+let currentVideo = 0;
+const videos = [
+    {
+        src: '#',
+        poster: 'https://via.placeholder.com/800x450/1a1a2e/ffffff?text=视频1'
+    },
+    {
+        src: '#',
+        poster: 'https://via.placeholder.com/800x450/2c3e50/ffffff?text=视频2'
+    },
+    {
+        src: '#',
+        poster: 'https://via.placeholder.com/800x450/27ae60/ffffff?text=视频3'
+    }
+];
+
+function changeVideo(direction) {
+    currentVideo += direction;
+    if (currentVideo >= videos.length) currentVideo = 0;
+    if (currentVideo < 0) currentVideo = videos.length - 1;
+    
+    const video = document.querySelector('video');
+    if (video) {
+        video.src = videos[currentVideo].src;
+        video.poster = videos[currentVideo].poster;
+    }
+}
+
+// 音乐播放器控制
+const audio = document.querySelector('audio');
+const playerInfo = document.querySelector('.player-info p');
+
+const musicList = [
+    {
+        title: '深夜陪伴音乐',
+        src: '#'
+    },
+    {
+        title: '温暖夜曲',
+        src: '#'
+    },
+    {
+        title: '宁静时光',
+        src: '#'
+    }
+];
+
+let currentMusic = 0;
+
+function changeMusic(direction) {
+    currentMusic += direction;
+    if (currentMusic >= musicList.length) currentMusic = 0;
+    if (currentMusic < 0) currentMusic = musicList.length - 1;
+    
+    if (audio && playerInfo) {
+        audio.src = musicList[currentMusic].src;
+        playerInfo.textContent = `正在播放：${musicList[currentMusic].title}`;
+    }
+}
+
 // 导航栏滚动效果
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 182, 193, 0.95)';
+        navbar.style.background = 'rgba(44, 62, 80, 0.95)';
         navbar.style.backdropFilter = 'blur(10px)';
     } else {
-        navbar.style.background = '#FFB6C1';
+        navbar.style.background = '#2c3e50';
         navbar.style.backdropFilter = 'none';
     }
 });
@@ -58,7 +119,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // 观察需要动画的元素
 document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.content-block, .product-card, .gallery-item, .timeline-item');
+    const animatedElements = document.querySelectorAll('.content-block, .activity-card, .member-card, .video-container, .music-player');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -88,30 +149,6 @@ const imageObserver = new IntersectionObserver((entries) => {
 images.forEach(img => {
     imageObserver.observe(img);
 });
-
-// 表单处理
-const contactForm = document.querySelector('.contact-form form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // 获取表单数据
-        const formData = new FormData(contactForm);
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const message = contactForm.querySelector('textarea').value;
-        
-        // 简单的表单验证
-        if (!name || !email || !message) {
-            alert('请填写所有必填字段');
-            return;
-        }
-        
-        // 模拟发送成功
-        alert('感谢您的留言！我们会尽快回复您。');
-        contactForm.reset();
-    });
-}
 
 // 按钮点击效果
 document.querySelectorAll('.btn').forEach(button => {
@@ -201,7 +238,7 @@ backToTopStyle.textContent = `
         right: 30px;
         width: 50px;
         height: 50px;
-        background: #FF69B4;
+        background: #3498db;
         color: white;
         border: none;
         border-radius: 50%;
@@ -211,7 +248,7 @@ backToTopStyle.textContent = `
         transition: all 0.3s ease;
         z-index: 1000;
         font-size: 1.2rem;
-        box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
     }
     
     .back-to-top.show {
@@ -220,9 +257,9 @@ backToTopStyle.textContent = `
     }
     
     .back-to-top:hover {
-        background: #FF1493;
+        background: #2980b9;
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+        box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
     }
 `;
 document.head.appendChild(backToTopStyle);
@@ -234,4 +271,53 @@ window.addEventListener('scroll', () => {
     } else {
         backToTop.classList.remove('show');
     }
+});
+
+// 自动轮播
+setInterval(() => {
+    changeVideo(1);
+}, 8000);
+
+// 键盘导航支持
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+        changeVideo(-1);
+    } else if (e.key === 'ArrowRight') {
+        changeVideo(1);
+    }
+});
+
+// 触摸滑动支持
+let startX = 0;
+let startY = 0;
+
+document.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+});
+
+document.addEventListener('touchend', (e) => {
+    if (!startX || !startY) return;
+    
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+    
+    const diffX = startX - endX;
+    const diffY = startY - endY;
+    
+    // 确保是水平滑动
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        if (Math.abs(diffX) > 50) { // 最小滑动距离
+            if (diffX > 0) {
+                // 向左滑动，显示下一个
+                changeVideo(1);
+            } else {
+                // 向右滑动，显示上一个
+                changeVideo(-1);
+            }
+        }
+    }
+    
+    startX = 0;
+    startY = 0;
 });
