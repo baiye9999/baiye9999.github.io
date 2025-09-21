@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>睡不着打给我</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="kitty-icon">🐱</span>
+                <h2>睡不着打给我</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#videos" class="nav-link">百业混剪</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#activities" class="nav-link">百业活动</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#members" class="nav-link">百业人员</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#join" class="nav-link">加入我们</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="hero">
+        <div class="hero-banner">
+            <div class="hero-carousel">
+                <div class="hero-slide active">
+                    <img src="images/hero/hero-banner-1.svg" alt="睡不着打给我百业组织">
+                </div>
+                <div class="hero-slide">
+                    <img src="images/hero/hero-banner-2.svg" alt="深夜陪伴">
+                </div>
+                <div class="hero-slide">
+                    <img src="images/hero/hero-banner-3.svg" alt="百业活动">
+                </div>
+                <div class="hero-controls">
+                    <button class="hero-btn prev" onclick="changeSlide(-1)">❮</button>
+                    <button class="hero-btn next" onclick="changeSlide(1)">❯</button>
+                </div>
+                <div class="hero-indicators">
+                    <span class="indicator active" onclick="currentSlide(1)"></span>
+                    <span class="indicator" onclick="currentSlide(2)"></span>
+                    <span class="indicator" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 欢迎区域 -->
+    <section class="welcome-section">
+        <div class="container">
+            <div class="welcome-content">
+                <div class="welcome-text">
+                    <h2>欢迎来到睡不着打给我的世界</h2>
+                    <p>睡不着打给我是一个温暖的百业组织，致力于为夜猫子们提供陪伴和交流平台。在这里，您可以找到志同道合的伙伴，分享深夜的思绪，体验各种精彩活动，感受百业大家庭的温暖。</p>
+                </div>
+                <div class="welcome-image">
+                    <img src="images/hero/welcome-image.svg" alt="睡不着打给我">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 内容区块 -->
+    <section class="content-blocks">
+        <div class="container">
+            <div class="blocks-grid">
+                <!-- 百业混剪 -->
+                <div class="content-block">
+                    <div class="block-image">
+                        <img src="images/activities/video-mix.svg" alt="百业混剪">
+                    </div>
+                    <div class="block-content">
+                        <h3>百业混剪</h3>
+                        <p>生而微末者，侠为其声</p>
+                        <button class="btn btn-pink">查看混剪</button>
+                    </div>
+                </div>
+
+                <!-- 百业活动 -->
+                <div class="content-block">
+                    <div class="block-image">
+                        <img src="images/activities/activity-main.svg" alt="百业活动">
+                    </div>
+                    <div class="block-content">
+                        <h3>百业活动</h3>
+                        <p>各行各业，精彩纷呈</p>
+                        <button class="btn btn-pink">参与活动</button>
+                    </div>
+                </div>
+
+    <!-- 百业人员 -->
+    <section id="members" class="members-section">
+        <div class="container">
+            <h2 class="section-title">百业人员</h2>
+            <p class="section-subtitle">精英人才，各展风采</p>
+            
+            <div class="members-carousel">
+                <div class="members-container">
+                    <!-- 第一页成员 -->
+                    <div class="members-slide active">
+                        <div class="members-grid">
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-songrentang.svg" alt="请叫我非酋">
+                                </div>
+                                <div class="member-info">
+                                    <h3>请叫我非酋</h3>
+                                    <p class="member-role">社长</p>
+                                    <div class="member-tags">
+                                        <span class="tag">虹虹玩家</span>
+                                        <span class="tag">紫色韵味</span>
+                                        <span class="tag">开服玩家</span>
+                                    </div>
+                                    <p class="member-description">为人仁厚，重情重义。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-2.svg" alt="成员2">
+                                </div>
+                                <div class="member-info">
+                                    <h3>成员2</h3>
+                                    <p class="member-role">副社长</p>
+                                    <div class="member-tags">
+                                        <span class="tag">技术专家</span>
+                                        <span class="tag">团队核心</span>
+                                    </div>
+                                    <p class="member-description">技术精湛，乐于助人。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-1.svg" alt="花田公主">
+                                </div>
+                                <div class="member-info">
+                                    <h3>花田公主</h3>
+                                    <p class="member-role">核心成员</p>
+                                    <div class="member-tags">
+                                        <span class="tag">金色魅力</span>
+                                        <span class="tag">花田守护</span>
+                                        <span class="tag">优雅气质</span>
+                                    </div>
+                                    <p class="member-description">温柔优雅，如花田中的精灵。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-3.svg" alt="成员3">
+                                </div>
+                                <div class="member-info">
+                                    <h3>成员3</h3>
+                                    <p class="member-role">核心成员</p>
+                                    <div class="member-tags">
+                                        <span class="tag">创意无限</span>
+                                        <span class="tag">组织能力强</span>
+                                    </div>
+                                    <p class="member-description">富有创意，善于组织活动。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-4.svg" alt="成员4">
+                                </div>
+                                <div class="member-info">
+                                    <h3>成员4</h3>
+                                    <p class="member-role">核心成员</p>
+                                    <div class="member-tags">
+                                        <span class="tag">技术专家</span>
+                                        <span class="tag">创新思维</span>
+                                    </div>
+                                    <p class="member-description">技术精湛，思维活跃。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-5.svg" alt="成员5">
+                                </div>
+                                <div class="member-info">
+                                    <h3>成员5</h3>
+                                    <p class="member-role">指挥</p>
+                                    <div class="member-tags">
+                                        <span class="tag">领导力强</span>
+                                        <span class="tag">战略思维</span>
+                                    </div>
+                                    <p class="member-description">具有出色的领导能力和战略眼光。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 第二页成员 -->
+                    <div class="members-slide">
+                        <div class="members-grid">
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-6.svg" alt="成员6">
+                                </div>
+                                <div class="member-info">
+                                    <h3>成员6</h3>
+                                    <p class="member-role">社众</p>
+                                    <div class="member-tags">
+                                        <span class="tag">积极向上</span>
+                                        <span class="tag">团队合作</span>
+                                    </div>
+                                    <p class="member-description">积极向上，善于团队合作。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-7.svg" alt="成员7">
+                                </div>
+                                <div class="member-info">
+                                    <h3>成员7</h3>
+                                    <p class="member-role">社众</p>
+                                    <div class="member-tags">
+                                        <span class="tag">热情洋溢</span>
+                                        <span class="tag">乐于助人</span>
+                                    </div>
+                                    <p class="member-description">热情洋溢，乐于助人。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-8.svg" alt="成员8">
+                                </div>
+                                <div class="member-info">
+                                    <h3>成员8</h3>
+                                    <p class="member-role">社众</p>
+                                    <div class="member-tags">
+                                        <span class="tag">勤奋努力</span>
+                                        <span class="tag">责任心强</span>
+                                    </div>
+                                    <p class="member-description">勤奋努力，责任心强。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-9.svg" alt="成员9">
+                                </div>
+                                <div class="member-info">
+                                    <h3>成员9</h3>
+                                    <p class="member-role">社众</p>
+                                    <div class="member-tags">
+                                        <span class="tag">创意丰富</span>
+                                        <span class="tag">思维活跃</span>
+                                    </div>
+                                    <p class="member-description">创意丰富，思维活跃。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-10.svg" alt="成员10">
+                                </div>
+                                <div class="member-info">
+                                    <h3>成员10</h3>
+                                    <p class="member-role">社众</p>
+                                    <div class="member-tags">
+                                        <span class="tag">学习能力强</span>
+                                        <span class="tag">适应性强</span>
+                                    </div>
+                                    <p class="member-description">学习能力强，适应性强。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card">
+                                <div class="member-avatar">
+                                    <img src="images/members/member-11.svg" alt="成员11">
+                                </div>
+                                <div class="member-info">
+                                    <h3>成员11</h3>
+                                    <p class="member-role">社众</p>
+                                    <div class="member-tags">
+                                        <span class="tag">沟通能力强</span>
+                                        <span class="tag">团队精神</span>
+                                    </div>
+                                    <p class="member-description">沟通能力强，具有团队精神。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 轮播控制按钮 -->
+                <div class="members-controls">
+                    <button class="members-btn prev" onclick="changeMembersSlide(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="members-btn next" onclick="changeMembersSlide(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <!-- 轮播指示器 -->
+                <div class="members-pagination">
+                    <span class="members-indicator active" onclick="showMembersSlide(0)"></span>
+                    <span class="members-indicator" onclick="showMembersSlide(1)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 加入我们 -->    <section id="join" class="join-section">
+        <div class="container">
+            <div class="join-content">
+                <div class="join-info">
+                    <h2>燕云十六声百业搜索</h2>
+                    <h3>睡不着打给我</h3>
+                    <p>睡不着打给我致力于展示各流派咸鱼人生的风采。</p>
+                    <p>我们相信，每个人都有自己的独特价值。</p>
+                    <p>睡不着打给我致力于展示各流派咸鱼人生的风采。</p>
+                    <p>我们相信，每个人都有自己的独特价值。</p>
+                </div>
+                
+                <div class="join-details">
+                    <div class="join-item">
+                        <h4>睡不着打给我</h4>
+                        <p>展示各流派咸鱼人才，弘扬咸鱼精神</p>
+                    </div>
+                    
+                    <div class="join-item">
+                        <h4>加入我们</h4>
+                        <p>加入我们，共建美好燕云</p>
+                    </div>
+                    
+                    <div class="join-item">
+                        <h4>关注我们</h4>
+                        <p>抖音：松仁糖</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 睡不着打给我. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

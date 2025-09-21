@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>睡不着打给我</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="kitty-icon">🐱</span>
+                <h2>睡不着打给我</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#videos" class="nav-link">百业混剪</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#activities" class="nav-link">百业活动</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#members" class="nav-link">百业人员</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#join" class="nav-link">加入我们</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="hero">
+        <div class="hero-banner">
+            <div class="hero-carousel">
+                <div class="hero-slide active">
+                    <img src="images/hero/hero-banner-1.svg" alt="睡不着打给我百业组织">
+                </div>
+                <div class="hero-slide">
+                    <img src="images/hero/hero-banner-2.svg" alt="深夜陪伴">
+                </div>
+                <div class="hero-slide">
+                    <img src="images/hero/hero-banner-3.svg" alt="百业活动">
+                </div>
+                <div class="hero-controls">
+                    <button class="hero-btn prev" onclick="changeSlide(-1)">❮</button>
+                    <button class="hero-btn next" onclick="changeSlide(1)">❯</button>
+                </div>
+                <div class="hero-indicators">
+                    <span class="indicator active" onclick="currentSlide(1)"></span>
+                    <span class="indicator" onclick="currentSlide(2)"></span>
+                    <span class="indicator" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 欢迎区域 -->
+    <section class="welcome-section">
+        <div class="container">
+            <div class="welcome-content">
+                <div class="welcome-text">
+                    <h2>欢迎来到睡不着打给我的世界</h2>
+                    <p>睡不着打给我是一个温暖的百业组织，致力于为夜猫子们提供陪伴和交流平台。在这里，您可以找到志同道合的伙伴，分享深夜的思绪，体验各种精彩活动，感受百业大家庭的温暖。</p>
+                </div>
+                <div class="welcome-image">
+                    <img src="images/hero/welcome-image.svg" alt="睡不着打给我">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 内容区块 -->
+    <section class="content-blocks">
+        <div class="container">
+            <div class="blocks-grid">
+                <!-- 百业混剪 -->
+                <div class="content-block">
+                    <div class="block-image">
+                        <img src="images/activities/video-mix.svg" alt="百业混剪">
+                    </div>
+                    <div class="block-content">
+                        <h3>百业混剪</h3>
+                        <p>生而微末者，侠为其声</p>
+                        <button class="btn btn-pink">查看混剪</button>
+                    </div>
+                </div>
+
+                <!-- 百业活动 -->
+                <div class="content-block">
+                    <div class="block-image">
+                        <img src="images/activities/activity-main.svg" alt="百业活动">
+                    </div>
+                    <div class="block-content">
+                        <h3>百业活动</h3>
+                        <p>各行各业，精彩纷呈</p>
+                        <button class="btn btn-pink">参与活动</button>
+                    </div>
+                </div>
+
+                <!-- 百业人员 -->
+                <div class="content-block">
+                    <div class="block-image">
+                        <img src="images/members/members-main.svg" alt="百业人员">
+                    </div>
+                    <div class="block-content">
+                        <h3>百业人员</h3>
+                        <p>精英人才，各展风采</p>
+                        <button class="btn btn-pink">认识伙伴</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 百业混剪 -->
+    <section id="videos" class="videos-section">
+        <div class="container">
+            <h2 class="section-title">百业混剪</h2>
+            <p class="section-subtitle">生而微末者，侠为其声</p>
+            
+            <div class="video-carousel">
+                <div class="video-container">
+                    <video controls poster="images/videos/video-poster.svg">
+                        <source src="#" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                    <div class="video-controls">
+                        <button class="carousel-btn prev" onclick="changeVideo(-1)">‹</button>
+                        <button class="carousel-btn next" onclick="changeVideo(1)">›</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 音乐播放器 -->
+            <div class="music-player">
+                <h3>深夜电台</h3>
+                <div class="player-container">
+                    <audio controls>
+                        <source src="#" type="audio/mpeg">
+                        您的浏览器不支持音频元素。
+                    </audio>
+                    <div class="player-info">
+                        <p>正在播放：深夜陪伴音乐</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 百业活动 -->
+    <section id="activities" class="activities-section">
+        <div class="container">
+            <h2 class="section-title">百业活动</h2>
+            <p class="section-subtitle">各行各业，精彩纷呈</p>
+            
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <div class="activity-image">
+                        <img src="images/activities/activity-teamwork.svg" alt="互帮互助五人本">
+                    </div>
+                    <div class="activity-content">
+                        <h3>互帮互助五人本</h3>
+                        <p>百业成员互帮互助，齐心协力，共同拿下五人本！</p>
+                        <div class="activity-details">
+                            <p><strong>主持：</strong>任何百业成员</p>
+                            <p><strong>时间：</strong>任何时间</p>
+                            <p><strong>地点：</strong>任何地点</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <div class="activity-image">
+                        <img src="images/activities/activity-challenge.svg" alt="团队协作挑战">
+                    </div>
+                    <div class="activity-content">
+                        <h3>团队协作挑战</h3>
+                        <p>挑战高难度副本，展现团队配合能力！</p>
+                        <div class="activity-details">
+                            <p><strong>主持：</strong>经验丰富的队长</p>
+                            <p><strong>时间：</strong>周末晚上</p>
+                            <p><strong>地点：</strong>游戏内副本</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <div class="activity-image">
+                        <img src="images/activities/activity-skill.svg" alt="技能交流分享">
+                    </div>
+                    <div class="activity-content">
+                        <h3>技能交流分享</h3>
+                        <p>分享游戏技巧，提升整体实力！</p>
+                        <div class="activity-details">
+                            <p><strong>主持：</strong>技术大神</p>
+                            <p><strong>时间：</strong>每周三</p>
+                            <p><strong>地点：</strong>在线会议室</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 百业人员 -->
+    <section id="members" class="members-section">
+        <div class="container">
+            <h2 class="section-title">百业人员</h2>
+            <p class="section-subtitle">精英人才，各展风采</p>
+            
+            <div class="members-carousel">
+                <div class="members-container">
+                    <div class="members-slide active">
+                        <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="images/members/member-songrentang.svg" alt="请叫我非酋">
+                    </div>
+                    <div class="member-info">
+                        <h3>请叫我非酋</h3>
+                        <p class="member-role">社长</p>
+                        <div class="member-tags">
+                            <span class="tag">虹虹玩家</span>
+                            <span class="tag">紫色韵味</span>
+                            <span class="tag">开服玩家</span>
+                        </div>
+                        <p class="member-description">为人仁厚，重情重义。</p>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="images/members/member-2.svg" alt="成员2">
+                    </div>
+                    <div class="member-info">
+                        <h3>成员2</h3>
+                        <p class="member-role">副社长</p>
+                        <div class="member-tags">
+                            <span class="tag">技术专家</span>
+                            <span class="tag">团队核心</span>
+                        </div>
+                        <p class="member-description">技术精湛，乐于助人。</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="images/members/member-1.svg" alt="花田公主">
+                    </div>
+                    <div class="member-info">
+                        <h3>花田公主</h3>
+                        <p class="member-role">核心成员</p>
+                        <div class="member-tags">
+                            <span class="tag">金色魅力</span>
+                            <span class="tag">花田守护</span>
+                            <span class="tag">优雅气质</span>
+                        </div>
+                        <p class="member-description">温柔优雅，如花田中的精灵。</p>
+                    </div>
+                </div>
+                                
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="images/members/member-3.svg" alt="成员3">
+                    </div>
+                    <div class="member-info">
+                        <h3>成员3</h3>
+                        <p class="member-role">活动策划</p>
+                        <div class="member-tags">
+                            <span class="tag">创意无限</span>
+                            <span class="tag">组织能力强</span>
+                        </div>
+                        <p class="member-description">富有创意，善于组织活动。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 加入我们 -->
+    <section id="join" class="join-section">
+        <div class="container">
+            <div class="join-content">
+                <div class="join-info">
+                    <h2>燕云十六声百业搜索</h2>
+                    <h3>睡不着打给我</h3>
+                    <p>睡不着打给我致力于展示各流派咸鱼人生的风采。</p>
+                    <p>我们相信，每个人都有自己的独特价值。</p>
+                    <p>睡不着打给我致力于展示各流派咸鱼人生的风采。</p>
+                    <p>我们相信，每个人都有自己的独特价值。</p>
+                </div>
+                
+                <div class="join-details">
+                    <div class="join-item">
+                        <h4>睡不着打给我</h4>
+                        <p>展示各流派咸鱼人才，弘扬咸鱼精神</p>
+                    </div>
+                    
+                    <div class="join-item">
+                        <h4>加入我们</h4>
+                        <p>加入我们，共建美好燕云</p>
+                    </div>
+                    
+                    <div class="join-item">
+                        <h4>关注我们</h4>
+                        <p>抖音：松仁糖</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 睡不着打给我. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

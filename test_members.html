@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试成员显示</title>
+    <style>
+        .members-section {
+            padding: 80px 0;
+            background: #FFF0F5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #FF69B4;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        
+        .member-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .member-avatar {
+            margin-bottom: 20px;
+        }
+        
+        .member-avatar img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .member-info h3 {
+            font-size: 1.5rem;
+            color: #FF69B4;
+            margin-bottom: 10px;
+        }
+        
+        .member-role {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .member-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .tag {
+            background: #FFB6C1;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .member-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <section class="members-section">
+        <div class="container">
+            <h2 class="section-title">百业人员</h2>
+            <p class="section-subtitle">精英人才，各展风采</p>
+            
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="images/members/member-songrentang.svg" alt="请叫我非酋">
+                    </div>
+                    <div class="member-info">
+                        <h3>请叫我非酋</h3>
+                        <p class="member-role">社长</p>
+                        <div class="member-tags">
+                            <span class="tag">虹虹玩家</span>
+                            <span class="tag">紫色韵味</span>
+                            <span class="tag">开服玩家</span>
+                        </div>
+                        <p class="member-description">为人仁厚，重情重义。</p>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="images/members/member-2.svg" alt="成员2">
+                    </div>
+                    <div class="member-info">
+                        <h3>成员2</h3>
+                        <p class="member-role">副社长</p>
+                        <div class="member-tags">
+                            <span class="tag">技术专家</span>
+                            <span class="tag">团队核心</span>
+                        </div>
+                        <p class="member-description">技术精湛，乐于助人。</p>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="images/members/member-1.svg" alt="花田公主">
+                    </div>
+                    <div class="member-info">
+                        <h3>花田公主</h3>
+                        <p class="member-role">核心成员</p>
+                        <div class="member-tags">
+                            <span class="tag">金色魅力</span>
+                            <span class="tag">花田守护</span>
+                            <span class="tag">优雅气质</span>
+                        </div>
+                        <p class="member-description">温柔优雅，如花田中的精灵。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
