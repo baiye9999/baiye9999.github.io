@@ -94,10 +94,10 @@ function changeMusic(direction) {
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(44, 62, 80, 0.95)';
+        navbar.style.background = 'rgba(255, 182, 193, 0.95)';
         navbar.style.backdropFilter = 'blur(10px)';
     } else {
-        navbar.style.background = '#2c3e50';
+        navbar.style.background = '#FFB6C1';
         navbar.style.backdropFilter = 'none';
     }
 });
