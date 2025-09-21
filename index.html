@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>睡不着打给我</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>睡不着打给我</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#videos" class="nav-link">深夜电台</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#activities" class="nav-link">夜聊活动</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#members" class="nav-link">夜聊伙伴</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#join" class="nav-link">加入我们</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">睡不着打给我</h1>
+            <p class="hero-subtitle">夜深人静，思绪万千，睡不着的时候，打给我吧</p>
+            <div class="hero-buttons">
+                <a href="#videos" class="btn btn-primary">查看深夜电台</a>
+                <a href="#activities" class="btn btn-secondary">探索夜聊活动</a>
+                <a href="#members" class="btn btn-outline">结识夜聊伙伴</a>
+            </div>
+        </div>
+        <div class="hero-bg"></div>
+    </section>
+
+    <!-- 深夜电台 -->
+    <section id="videos" class="videos-section">
+        <div class="container">
+            <h2 class="section-title">深夜电台</h2>
+            <p class="section-subtitle">夜深人静，声音最动听</p>
+            
+            <div class="video-carousel">
+                <div class="video-container">
+                    <video controls poster="https://via.placeholder.com/800x450/1a1a2e/ffffff?text=视频预览">
+                        <source src="#" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                    <div class="video-controls">
+                        <button class="carousel-btn prev" onclick="changeVideo(-1)">‹</button>
+                        <button class="carousel-btn next" onclick="changeVideo(1)">›</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 夜聊活动 -->
+    <section id="activities" class="activities-section">
+        <div class="container">
+            <h2 class="section-title">夜聊活动</h2>
+            <p class="section-subtitle">各种话题，随心所欲</p>
+            
+            <div class="activities-carousel">
+                <div class="activity-card">
+                    <div class="activity-image">
+                        <img src="https://via.placeholder.com/400x300/2c3e50/ffffff?text=深夜谈心会" alt="深夜谈心会">
+                    </div>
+                    <div class="activity-content">
+                        <h3>深夜谈心会</h3>
+                        <p>夜聊伙伴互相倾听，分享心事，一起度过漫漫长夜！</p>
+                        <div class="activity-details">
+                            <p><strong>主持：</strong>任何夜聊伙伴</p>
+                            <p><strong>时间：</strong>任何时间</p>
+                            <p><strong>地点：</strong>任何地点</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <div class="activity-image">
+                        <img src="https://via.placeholder.com/400x300/27ae60/ffffff?text=团队协作" alt="团队协作">
+                    </div>
+                    <div class="activity-content">
+                        <h3>深夜话题讨论</h3>
+                        <p>讨论各种有趣话题，展现思维碰撞的魅力！</p>
+                        <div class="activity-details">
+                            <p><strong>主持：</strong>经验丰富的队长</p>
+                            <p><strong>时间：</strong>周末晚上</p>
+                            <p><strong>地点：</strong>游戏内副本</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <div class="activity-image">
+                        <img src="https://via.placeholder.com/400x300/e74c3c/ffffff?text=技能交流" alt="技能交流">
+                    </div>
+                    <div class="activity-content">
+                        <h3>经验分享会</h3>
+                        <p>分享生活经验，提升人生智慧！</p>
+                        <div class="activity-details">
+                            <p><strong>主持：</strong>技术大神</p>
+                            <p><strong>时间：</strong>每周三</p>
+                            <p><strong>地点：</strong>在线会议室</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="changeActivity(-1)">‹</button>
+                <button class="carousel-btn next" onclick="changeActivity(1)">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 夜聊伙伴 -->
+    <section id="members" class="members-section">
+        <div class="container">
+            <h2 class="section-title">夜聊伙伴</h2>
+            <p class="section-subtitle">夜聊达人，各显神通</p>
+            
+            <div class="members-carousel">
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://via.placeholder.com/200x200/9b59b6/ffffff?text=夜聊小王子" alt="夜聊小王子">
+                    </div>
+                    <div class="member-info">
+                        <h3>夜聊小王子</h3>
+                        <p class="member-role">群主</p>
+                        <div class="member-tags">
+                            <span class="tag">虹虹玩家</span>
+                            <span class="tag">紫色韵味</span>
+                            <span class="tag">开服玩家</span>
+                        </div>
+                        <p class="member-description">善于倾听，温暖贴心。</p>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://via.placeholder.com/200x200/3498db/ffffff?text=夜聊达人" alt="夜聊达人">
+                    </div>
+                    <div class="member-info">
+                        <h3>夜聊达人</h3>
+                        <p class="member-role">副群主</p>
+                        <div class="member-tags">
+                            <span class="tag">技术专家</span>
+                            <span class="tag">团队核心</span>
+                        </div>
+                        <p class="member-description">话题丰富，善于引导。</p>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="https://via.placeholder.com/200x200/e67e22/ffffff?text=夜聊策划" alt="夜聊策划">
+                    </div>
+                    <div class="member-info">
+                        <h3>夜聊策划</h3>
+                        <p class="member-role">话题策划</p>
+                        <div class="member-tags">
+                            <span class="tag">创意无限</span>
+                            <span class="tag">组织能力强</span>
+                        </div>
+                        <p class="member-description">富有创意，善于组织话题。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" onclick="changeMember(-1)">‹</button>
+                <button class="carousel-btn next" onclick="changeMember(1)">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 加入我们 -->
+    <section id="join" class="join-section">
+        <div class="container">
+            <div class="join-content">
+                <div class="join-info">
+                    <h2>睡不着打给我夜聊平台</h2>
+                    <h3>睡不着打给我</h3>
+                    <p>睡不着打给我致力于展示各种夜聊话题的精彩。</p>
+                    <p>我们相信，每个夜晚都值得被倾听。</p>
+                </div>
+                
+                <div class="join-details">
+                    <div class="join-item">
+                        <h4>睡不着打给我</h4>
+                        <p>展示各种夜聊达人，弘扬倾听精神</p>
+                    </div>
+                    
+                    <div class="join-item">
+                        <h4>加入我们</h4>
+                        <p>加入我们，共建温暖夜聊</p>
+                    </div>
+                    
+                    <div class="join-item">
+                        <h4>关注我们</h4>
+                        <p>抖音：夜聊小王子</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 睡不着打给我. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <!-- 加载动画 -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+</body>
+</html>
