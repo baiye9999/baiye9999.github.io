@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>睡不着打给我</title>
+    <title>Hello Kitty 世界</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -12,23 +12,27 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <h2>睡不着打给我</h2>
+                <span class="kitty-icon">��</span>
+                <h2>Hello Kitty 世界</h2>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
                     <a href="#home" class="nav-link">首页</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#videos" class="nav-link">深夜电台</a>
+                    <a href="#about" class="nav-link">关于Hello Kitty</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#activities" class="nav-link">夜聊活动</a>
+                    <a href="#products" class="nav-link">产品系列</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#members" class="nav-link">夜聊伙伴</a>
+                    <a href="#gallery" class="nav-link">图片画廊</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#join" class="nav-link">加入我们</a>
+                    <a href="#history" class="nav-link">历史发展</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">联系我们</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -41,186 +45,199 @@
 
     <!-- 首页横幅 -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">睡不着打给我</h1>
-            <p class="hero-subtitle">夜深人静，思绪万千，睡不着的时候，打给我吧</p>
-            <div class="hero-buttons">
-                <a href="#videos" class="btn btn-primary">查看深夜电台</a>
-                <a href="#activities" class="btn btn-secondary">探索夜聊活动</a>
-                <a href="#members" class="btn btn-outline">结识夜聊伙伴</a>
-            </div>
+        <div class="hero-banner">
+            <img src="https://via.placeholder.com/1200x400/FFB6C1/ffffff?text=Hello+Kitty+和朋友们" alt="Hello Kitty 和朋友们">
         </div>
-        <div class="hero-bg"></div>
     </section>
 
-    <!-- 深夜电台 -->
-    <section id="videos" class="videos-section">
+    <!-- 欢迎区域 -->
+    <section class="welcome-section">
         <div class="container">
-            <h2 class="section-title">深夜电台</h2>
-            <p class="section-subtitle">夜深人静，声音最动听</p>
-            
-            <div class="video-carousel">
-                <div class="video-container">
-                    <video controls poster="https://via.placeholder.com/800x450/1a1a2e/ffffff?text=视频预览">
-                        <source src="#" type="video/mp4">
-                        您的浏览器不支持视频播放。
-                    </video>
-                    <div class="video-controls">
-                        <button class="carousel-btn prev" onclick="changeVideo(-1)">‹</button>
-                        <button class="carousel-btn next" onclick="changeVideo(1)">›</button>
-                    </div>
+            <div class="welcome-content">
+                <div class="welcome-text">
+                    <h2>欢迎来到Hello Kitty的世界</h2>
+                    <p>Hello Kitty是由三丽鸥公司设计的卡通形象，诞生于1974年，深受全球粉丝喜爱。在这里，您可以探索Hello Kitty的魅力、了解她的历史、感受她的文化，并发现各种精美的产品。</p>
+                </div>
+                <div class="welcome-image">
+                    <img src="https://via.placeholder.com/200x200/FFB6C1/ffffff?text=Hello+Kitty" alt="Hello Kitty">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 夜聊活动 -->
-    <section id="activities" class="activities-section">
+    <!-- 内容区块 -->
+    <section class="content-blocks">
         <div class="container">
-            <h2 class="section-title">夜聊活动</h2>
-            <p class="section-subtitle">各种话题，随心所欲</p>
-            
-            <div class="activities-carousel">
-                <div class="activity-card">
-                    <div class="activity-image">
-                        <img src="https://via.placeholder.com/400x300/2c3e50/ffffff?text=深夜谈心会" alt="深夜谈心会">
+            <div class="blocks-grid">
+                <!-- 最新产品 -->
+                <div class="content-block">
+                    <div class="block-image">
+                        <img src="https://via.placeholder.com/300x200/FFB6C1/ffffff?text=最新产品" alt="最新产品">
                     </div>
-                    <div class="activity-content">
-                        <h3>深夜谈心会</h3>
-                        <p>夜聊伙伴互相倾听，分享心事，一起度过漫漫长夜！</p>
-                        <div class="activity-details">
-                            <p><strong>主持：</strong>任何夜聊伙伴</p>
-                            <p><strong>时间：</strong>任何时间</p>
-                            <p><strong>地点：</strong>任何地点</p>
-                        </div>
+                    <div class="block-content">
+                        <h3>最新产品</h3>
+                        <p>探索2023年最新Hello Kitty系列产品</p>
+                        <button class="btn btn-pink">了解更多</button>
                     </div>
                 </div>
-                
-                <div class="activity-card">
-                    <div class="activity-image">
-                        <img src="https://via.placeholder.com/400x300/27ae60/ffffff?text=团队协作" alt="团队协作">
+
+                <!-- 历史沿革 -->
+                <div class="content-block">
+                    <div class="block-image">
+                        <img src="https://via.placeholder.com/300x200/FFB6C1/ffffff?text=历史沿革" alt="历史沿革">
                     </div>
-                    <div class="activity-content">
-                        <h3>深夜话题讨论</h3>
-                        <p>讨论各种有趣话题，展现思维碰撞的魅力！</p>
-                        <div class="activity-details">
-                            <p><strong>主持：</strong>经验丰富的队长</p>
-                            <p><strong>时间：</strong>周末晚上</p>
-                            <p><strong>地点：</strong>游戏内副本</p>
-                        </div>
+                    <div class="block-content">
+                        <h3>历史沿革</h3>
+                        <p>了解Hello Kitty从1974年至今的发展历程</p>
+                        <button class="btn btn-pink">了解更多</button>
                     </div>
                 </div>
-                
-                <div class="activity-card">
-                    <div class="activity-image">
-                        <img src="https://via.placeholder.com/400x300/e74c3c/ffffff?text=技能交流" alt="技能交流">
+
+                <!-- 精彩图片 -->
+                <div class="content-block">
+                    <div class="block-image">
+                        <img src="https://via.placeholder.com/300x200/FFB6C1/ffffff?text=精彩图片" alt="精彩图片">
                     </div>
-                    <div class="activity-content">
-                        <h3>经验分享会</h3>
-                        <p>分享生活经验，提升人生智慧！</p>
-                        <div class="activity-details">
-                            <p><strong>主持：</strong>技术大神</p>
-                            <p><strong>时间：</strong>每周三</p>
-                            <p><strong>地点：</strong>在线会议室</p>
-                        </div>
+                    <div class="block-content">
+                        <h3>精彩图片</h3>
+                        <p>欣赏Hello Kitty精美图片和收藏品</p>
+                        <button class="btn btn-pink">了解更多</button>
                     </div>
                 </div>
-            </div>
-            
-            <div class="carousel-controls">
-                <button class="carousel-btn prev" onclick="changeActivity(-1)">‹</button>
-                <button class="carousel-btn next" onclick="changeActivity(1)">›</button>
             </div>
         </div>
     </section>
 
-    <!-- 夜聊伙伴 -->
-    <section id="members" class="members-section">
+    <!-- 关于Hello Kitty -->
+    <section id="about" class="about-section">
         <div class="container">
-            <h2 class="section-title">夜聊伙伴</h2>
-            <p class="section-subtitle">夜聊达人，各显神通</p>
-            
-            <div class="members-carousel">
-                <div class="member-card">
-                    <div class="member-avatar">
-                        <img src="https://via.placeholder.com/200x200/9b59b6/ffffff?text=夜聊小王子" alt="夜聊小王子">
-                    </div>
-                    <div class="member-info">
-                        <h3>夜聊小王子</h3>
-                        <p class="member-role">群主</p>
-                        <div class="member-tags">
-                            <span class="tag">虹虹玩家</span>
-                            <span class="tag">紫色韵味</span>
-                            <span class="tag">开服玩家</span>
-                        </div>
-                        <p class="member-description">善于倾听，温暖贴心。</p>
-                    </div>
+            <h2 class="section-title">关于Hello Kitty</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello Kitty（日文：ハローキティ；拉丁写法：Harōkiti）是日本三丽鸥公司（Sanrio）于1974年所创造的卡通人物。Hello Kitty相关商品通常是以明亮的粉红色的一只头上有蝴蝶结的白色卡通小猫Hello Kitty形象出现。</p>
+                    <p>Hello Kitty被给予了英国血统，因为当时英国文化很受日本女孩欢迎。Kitty的名字来源于刘易斯·卡罗尔所著《爱丽丝镜中奇遇》一书中爱丽丝养的一只猫。1999年被创造出的Dear Daniel是Hello Kitty的男朋友，也是一个卡通人物。</p>
                 </div>
-                
-                <div class="member-card">
-                    <div class="member-avatar">
-                        <img src="https://via.placeholder.com/200x200/3498db/ffffff?text=夜聊达人" alt="夜聊达人">
-                    </div>
-                    <div class="member-info">
-                        <h3>夜聊达人</h3>
-                        <p class="member-role">副群主</p>
-                        <div class="member-tags">
-                            <span class="tag">技术专家</span>
-                            <span class="tag">团队核心</span>
-                        </div>
-                        <p class="member-description">话题丰富，善于引导。</p>
-                    </div>
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/400x300/FFB6C1/ffffff?text=Hello+Kitty+介绍" alt="Hello Kitty 介绍">
                 </div>
-                
-                <div class="member-card">
-                    <div class="member-avatar">
-                        <img src="https://via.placeholder.com/200x200/e67e22/ffffff?text=夜聊策划" alt="夜聊策划">
-                    </div>
-                    <div class="member-info">
-                        <h3>夜聊策划</h3>
-                        <p class="member-role">话题策划</p>
-                        <div class="member-tags">
-                            <span class="tag">创意无限</span>
-                            <span class="tag">组织能力强</span>
-                        </div>
-                        <p class="member-description">富有创意，善于组织话题。</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="carousel-controls">
-                <button class="carousel-btn prev" onclick="changeMember(-1)">‹</button>
-                <button class="carousel-btn next" onclick="changeMember(1)">›</button>
             </div>
         </div>
     </section>
 
-    <!-- 加入我们 -->
-    <section id="join" class="join-section">
+    <!-- 产品系列 -->
+    <section id="products" class="products-section">
         <div class="container">
-            <div class="join-content">
-                <div class="join-info">
-                    <h2>睡不着打给我夜聊平台</h2>
-                    <h3>睡不着打给我</h3>
-                    <p>睡不着打给我致力于展示各种夜聊话题的精彩。</p>
-                    <p>我们相信，每个夜晚都值得被倾听。</p>
+            <h2 class="section-title">产品系列</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200/FFB6C1/ffffff?text=毛绒玩具" alt="毛绒玩具">
+                    <h3>毛绒玩具</h3>
+                    <p>各种尺寸的Hello Kitty毛绒玩具</p>
                 </div>
-                
-                <div class="join-details">
-                    <div class="join-item">
-                        <h4>睡不着打给我</h4>
-                        <p>展示各种夜聊达人，弘扬倾听精神</p>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200/FFB6C1/ffffff?text=文具用品" alt="文具用品">
+                    <h3>文具用品</h3>
+                    <p>可爱的Hello Kitty文具系列</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200/FFB6C1/ffffff?text=服装配饰" alt="服装配饰">
+                    <h3>服装配饰</h3>
+                    <p>时尚的Hello Kitty服装配饰</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250x200/FFB6C1/ffffff?text=家居用品" alt="家居用品">
+                    <h3>家居用品</h3>
+                    <p>温馨的Hello Kitty家居用品</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 图片画廊 -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">图片画廊</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x300/FFB6C1/ffffff?text=Gallery+1" alt="Gallery 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x300/FFB6C1/ffffff?text=Gallery+2" alt="Gallery 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x300/FFB6C1/ffffff?text=Gallery+3" alt="Gallery 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x300/FFB6C1/ffffff?text=Gallery+4" alt="Gallery 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x300/FFB6C1/ffffff?text=Gallery+5" alt="Gallery 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x300/FFB6C1/ffffff?text=Gallery+6" alt="Gallery 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史发展 -->
+    <section id="history" class="history-section">
+        <div class="container">
+            <h2 class="section-title">历史发展</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1974</div>
+                    <div class="timeline-content">
+                        <h3>Hello Kitty诞生</h3>
+                        <p>由设计师清水侑子设计，Hello Kitty首次亮相</p>
                     </div>
-                    
-                    <div class="join-item">
-                        <h4>加入我们</h4>
-                        <p>加入我们，共建温暖夜聊</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1980s</div>
+                    <div class="timeline-content">
+                        <h3>全球扩张</h3>
+                        <p>Hello Kitty开始在全球范围内流行</p>
                     </div>
-                    
-                    <div class="join-item">
-                        <h4>关注我们</h4>
-                        <p>抖音：夜聊小王子</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1990s</div>
+                    <div class="timeline-content">
+                        <h3>文化现象</h3>
+                        <p>成为日本流行文化的重要象征</p>
                     </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2000s</div>
+                    <div class="timeline-content">
+                        <h3>数字化时代</h3>
+                        <p>在数字媒体和网络世界中继续发展</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">联系我们</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Hello Kitty 世界</h3>
+                    <p>欢迎来到Hello Kitty的温馨世界</p>
+                    <div class="contact-details">
+                        <p>📧 邮箱：hello@hellokitty.com</p>
+                        <p>📱 电话：+81-3-1234-5678</p>
+                        <p>📍 地址：日本东京都涩谷区</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="您的姓名" required>
+                        <input type="email" placeholder="您的邮箱" required>
+                        <textarea placeholder="您的留言" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-pink">发送消息</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -229,21 +246,10 @@
     <!-- 页脚 -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 睡不着打给我. 保留所有权利.</p>
+            <p>&copy; Hello Kitty 世界 保留所有权利</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
-</body>
-</html>
-
-    <!-- 返回顶部按钮 -->
-    <button class="back-to-top" onclick="scrollToTop()">↑</button>
-
-    <!-- 加载动画 -->
-    <div class="loading" id="loading">
-        <div class="loading-spinner"></div>
-    </div>
-
 </body>
 </html>
