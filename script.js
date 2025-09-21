@@ -447,19 +447,32 @@ function generateMemberThumbnails() {
     });
 }
 
-// 动态生成分页 - 修复版本
+// 动态生成分页 - 移动端适配版本
 function generatePagination() {
-    const pagination = document.getElementById('pagination');
+    const pagination = document.getElementById("pagination");
     if (!pagination) return;
     
-    pagination.innerHTML = '';
+    pagination.innerHTML = "";
     
-    // 如果总页数少于等于7页，直接显示所有页码
-    if (totalPages <= 7) {
+    const screenWidth = window.innerWidth;
+    let maxPageDots = 7; // 默认桌面端显示7个数字
+    let ellipsisThreshold = 4; // 省略号阈值
+    
+    // 移动端显示更少的数字，确保一行显示
+    if (screenWidth <= 480) {
+        maxPageDots = 3; // 小屏幕只显示3个数字
+        ellipsisThreshold = 2;
+    } else if (screenWidth <= 768) {
+        maxPageDots = 5; // 中等屏幕显示5个数字
+        ellipsisThreshold = 3;
+    }
+    
+    // 如果总页数少于等于最大显示数量，直接显示所有页码
+    if (totalPages <= maxPageDots) {
         for (let i = 1; i <= totalPages; i++) {
-            const pageDot = document.createElement('span');
-            pageDot.className = 'page-dot';
-            if (i === currentPage) pageDot.classList.add('active');
+            const pageDot = document.createElement("span");
+            pageDot.className = "page-dot";
+            if (i === currentPage) pageDot.classList.add("active");
             pageDot.textContent = i;
             pageDot.onclick = () => goToPage(i);
             pagination.appendChild(pageDot);
@@ -467,36 +480,46 @@ function generatePagination() {
         return;
     }
     
-    // 总页数大于7页的情况
+    // 总页数大于最大显示数量的情况
     let startPage, endPage;
     
-    if (currentPage <= 4) {
-        // 当前页在前4页，显示1-7...最后一页
+    if (currentPage <= ellipsisThreshold) {
+        // 当前页在前几页，显示前maxPageDots页
         startPage = 1;
-        endPage = 7;
-    } else if (currentPage >= totalPages - 3) {
-        // 当前页在后4页，显示第一页...最后7页
-        startPage = totalPages - 6;
+        endPage = maxPageDots;
+    } else if (currentPage >= totalPages - (ellipsisThreshold - 1)) {
+        // 当前页在后几页，显示最后maxPageDots页
+        startPage = totalPages - (maxPageDots - 1);
         endPage = totalPages;
     } else {
-        // 当前页在中间，显示第一页...当前页前后各2页...最后一页
-        startPage = currentPage - 2;
-        endPage = currentPage + 2;
+        // 当前页在中间，显示当前页前后各几页
+        const half = Math.floor(maxPageDots / 2);
+        startPage = currentPage - half;
+        endPage = currentPage + half;
+        // 确保不超出范围
+        if (startPage < 1) {
+            endPage += (1 - startPage);
+            startPage = 1;
+        }
+        if (endPage > totalPages) {
+            startPage -= (endPage - totalPages);
+            endPage = totalPages;
+        }
     }
     
     // 添加第一页
-    const firstPage = document.createElement('span');
-    firstPage.className = 'page-dot';
-    if (1 === currentPage) firstPage.classList.add('active');
-    firstPage.textContent = '1';
+    const firstPage = document.createElement("span");
+    firstPage.className = "page-dot";
+    if (1 === currentPage) firstPage.classList.add("active");
+    firstPage.textContent = "1";
     firstPage.onclick = () => goToPage(1);
     pagination.appendChild(firstPage);
     
     // 添加第一个省略号
     if (startPage > 2) {
-        const ellipsis1 = document.createElement('span');
-        ellipsis1.className = 'page-ellipsis';
-        ellipsis1.textContent = '...';
+        const ellipsis1 = document.createElement("span");
+        ellipsis1.className = "page-ellipsis";
+        ellipsis1.textContent = "...";
         pagination.appendChild(ellipsis1);
     }
     
@@ -504,9 +527,9 @@ function generatePagination() {
     for (let i = startPage; i <= endPage; i++) {
         if (i === 1 || i === totalPages) continue; // 跳过第一页和最后一页，因为已经单独处理
         
-        const pageDot = document.createElement('span');
-        pageDot.className = 'page-dot';
-        if (i === currentPage) pageDot.classList.add('active');
+        const pageDot = document.createElement("span");
+        pageDot.className = "page-dot";
+        if (i === currentPage) pageDot.classList.add("active");
         pageDot.textContent = i;
         pageDot.onclick = () => goToPage(i);
         pagination.appendChild(pageDot);
@@ -514,17 +537,17 @@ function generatePagination() {
     
     // 添加第二个省略号
     if (endPage < totalPages - 1) {
-        const ellipsis2 = document.createElement('span');
-        ellipsis2.className = 'page-ellipsis';
-        ellipsis2.textContent = '...';
+        const ellipsis2 = document.createElement("span");
+        ellipsis2.className = "page-ellipsis";
+        ellipsis2.textContent = "...";
         pagination.appendChild(ellipsis2);
     }
     
     // 添加最后一页
     if (totalPages > 1) {
-        const lastPage = document.createElement('span');
-        lastPage.className = 'page-dot';
-        if (totalPages === currentPage) lastPage.classList.add('active');
+        const lastPage = document.createElement("span");
+        lastPage.className = "page-dot";
+        if (totalPages === currentPage) lastPage.classList.add("active");
         lastPage.textContent = totalPages;
         lastPage.onclick = () => goToPage(totalPages);
         pagination.appendChild(lastPage);

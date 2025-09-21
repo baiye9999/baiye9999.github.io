@@ -779,6 +779,39 @@ body {
     .member-role {
         font-size: 1.4rem;
     }
+
+
+
+    /* 分页样式 - 移动端单行显示 */
+    .pagination {
+        display: flex;
+        gap: 3px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0 10px;
+        max-width: 100%;
+        scrollbar-width: none;
+    }
+    
+    .pagination::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .page-dot {
+        flex-shrink: 0;
+        min-width: 40px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width: 480px) {
