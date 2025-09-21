@@ -1,20 +1,3 @@
-// 移动端导航菜单切换
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-
-if (hamburger && navMenu) {
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    // 关闭移动端菜单当点击链接
-    document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    }));
-}
-
 // 平滑滚动
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -29,66 +12,62 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// 视频轮播
-let currentVideo = 0;
-const videos = [
-    {
-        src: '#',
-        poster: 'https://via.placeholder.com/800x450/1a1a2e/ffffff?text=视频1'
-    },
-    {
-        src: '#',
-        poster: 'https://via.placeholder.com/800x450/2c3e50/ffffff?text=视频2'
-    },
-    {
-        src: '#',
-        poster: 'https://via.placeholder.com/800x450/27ae60/ffffff?text=视频3'
-    }
-];
+// 移动端菜单切换
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
 
-function changeVideo(direction) {
-    currentVideo += direction;
-    if (currentVideo >= videos.length) currentVideo = 0;
-    if (currentVideo < 0) currentVideo = videos.length - 1;
-    
-    const video = document.querySelector('video');
-    if (video) {
-        video.src = videos[currentVideo].src;
-        video.poster = videos[currentVideo].poster;
-    }
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // 点击菜单项时关闭移动端菜单
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
 }
 
-// 音乐播放器控制
-const audio = document.querySelector('audio');
-const playerInfo = document.querySelector('.player-info p');
+// 返回顶部按钮
+const backToTopBtn = document.createElement('button');
+backToTopBtn.innerHTML = '↑';
+backToTopBtn.className = 'back-to-top';
+backToTopBtn.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #FF69B4;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    z-index: 1000;
+    transition: all 0.3s ease;
+`;
 
-const musicList = [
-    {
-        title: '深夜陪伴音乐',
-        src: '#'
-    },
-    {
-        title: '温暖夜曲',
-        src: '#'
-    },
-    {
-        title: '宁静时光',
-        src: '#'
+document.body.appendChild(backToTopBtn);
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTopBtn.style.display = 'block';
+    } else {
+        backToTopBtn.style.display = 'none';
     }
-];
+});
 
-let currentMusic = 0;
-
-function changeMusic(direction) {
-    currentMusic += direction;
-    if (currentMusic >= musicList.length) currentMusic = 0;
-    if (currentMusic < 0) currentMusic = musicList.length - 1;
-    
-    if (audio && playerInfo) {
-        audio.src = musicList[currentMusic].src;
-        playerInfo.textContent = `正在播放：${musicList[currentMusic].title}`;
-    }
-}
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
 
 // 导航栏滚动效果
 window.addEventListener('scroll', () => {
@@ -128,64 +107,69 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 图片懒加载
-const images = document.querySelectorAll('img');
-const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.style.opacity = '0';
-            img.style.transition = 'opacity 0.3s ease';
-            
-            img.onload = () => {
-                img.style.opacity = '1';
-            };
-            
-            imageObserver.unobserve(img);
-        }
+// 视频播放控制
+document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+        video.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
     });
 });
 
-images.forEach(img => {
-    imageObserver.observe(img);
-});
-
-// 按钮点击效果
-document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', function(e) {
-        // 创建波纹效果
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.classList.add('ripple');
-        
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
+// 音频播放控制
+document.addEventListener('DOMContentLoaded', () => {
+    const audios = document.querySelectorAll('audio');
+    audios.forEach(audio => {
+        audio.addEventListener('play', () => {
+            // 暂停其他音频
+            audios.forEach(otherAudio => {
+                if (otherAudio !== audio && !otherAudio.paused) {
+                    otherAudio.pause();
+                }
+            });
+        });
     });
 });
 
-// 添加波纹效果样式
+// 点击波纹效果
+document.addEventListener('click', (e) => {
+    const ripple = document.createElement('span');
+    const rect = e.target.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    
+    ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+    `;
+    
+    e.target.style.position = 'relative';
+    e.target.style.overflow = 'hidden';
+    e.target.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+});
+
+// 添加波纹动画样式
 const style = document.createElement('style');
 style.textContent = `
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.6);
-        transform: scale(0);
-        animation: ripple-animation 0.6s linear;
-        pointer-events: none;
-    }
-    
-    @keyframes ripple-animation {
+    @keyframes ripple {
         to {
             transform: scale(4);
             opacity: 0;
@@ -203,88 +187,36 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         document.body.style.opacity = '1';
     }, 100);
-    
-    // 预加载关键图片
-    const criticalImages = document.querySelectorAll('.hero-banner img, .welcome-image img');
-    criticalImages.forEach(img => {
-        if (img.src) {
-            const newImg = new Image();
-            newImg.src = img.src;
+});
+
+// 键盘导航支持
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        // 关闭移动端菜单
+        if (hamburger && navMenu) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    }
+});
+
+// 图片懒加载
+const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+            }
         }
     });
 });
 
-// 返回顶部功能
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
-// 创建返回顶部按钮
-const backToTop = document.createElement('button');
-backToTop.innerHTML = '↑';
-backToTop.className = 'back-to-top';
-backToTop.onclick = scrollToTop;
-document.body.appendChild(backToTop);
-
-// 返回顶部按钮样式
-const backToTopStyle = document.createElement('style');
-backToTopStyle.textContent = `
-    .back-to-top {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background: #3498db;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-        font-size: 1.2rem;
-        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-    }
-    
-    .back-to-top.show {
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .back-to-top:hover {
-        background: #2980b9;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
-    }
-`;
-document.head.appendChild(backToTopStyle);
-
-// 显示/隐藏返回顶部按钮
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTop.classList.add('show');
-    } else {
-        backToTop.classList.remove('show');
-    }
-});
-
-// 自动轮播
-setInterval(() => {
-    changeVideo(1);
-}, 8000);
-
-// 键盘导航支持
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-        changeVideo(-1);
-    } else if (e.key === 'ArrowRight') {
-        changeVideo(1);
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    lazyImages.forEach(img => imageObserver.observe(img));
 });
 
 // 触摸滑动支持
@@ -305,15 +237,18 @@ document.addEventListener('touchend', (e) => {
     const diffX = startX - endX;
     const diffY = startY - endY;
     
-    // 确保是水平滑动
     if (Math.abs(diffX) > Math.abs(diffY)) {
-        if (Math.abs(diffX) > 50) { // 最小滑动距离
+        if (Math.abs(diffX) > 50) {
             if (diffX > 0) {
-                // 向左滑动，显示下一个
-                changeVideo(1);
+                // 向左滑动
+                if (typeof changeSlide === 'function') {
+                    changeSlide(1);
+                }
             } else {
-                // 向右滑动，显示上一个
-                changeVideo(-1);
+                // 向右滑动
+                if (typeof changeSlide === 'function') {
+                    changeSlide(-1);
+                }
             }
         }
     }
@@ -322,77 +257,53 @@ document.addEventListener('touchend', (e) => {
     startY = 0;
 });
 
-// 轮播功能
-let currentSlideIndex = 0;
-const slides = document.querySelectorAll('.hero-slide');
-const indicators = document.querySelectorAll('.indicator');
-
-function showSlide(index) {
-    // 隐藏所有幻灯片
-    slides.forEach(slide => slide.classList.remove('active'));
-    indicators.forEach(indicator => indicator.classList.remove('active'));
-    
-    // 显示当前幻灯片
-    if (slides[index]) {
-        slides[index].classList.add('active');
-    }
-    if (indicators[index]) {
-        indicators[index].classList.add('active');
-    }
-}
-
-function changeSlide(direction) {
-    currentSlideIndex += direction;
-    
-    if (currentSlideIndex >= slides.length) {
-        currentSlideIndex = 0;
-    } else if (currentSlideIndex < 0) {
-        currentSlideIndex = slides.length - 1;
-    }
-    
-    showSlide(currentSlideIndex);
-}
-
-function currentSlide(index) {
-    currentSlideIndex = index - 1;
-    showSlide(currentSlideIndex);
-}
-
-// 自动轮播
-function autoSlide() {
-    changeSlide(1);
-}
-
-// 启动自动轮播
-let slideInterval = setInterval(autoSlide, 5000);
-
-// 鼠标悬停时暂停自动轮播
-const heroCarousel = document.querySelector('.hero-carousel');
-if (heroCarousel) {
-    heroCarousel.addEventListener('mouseenter', () => {
-        clearInterval(slideInterval);
-    });
-    
-    heroCarousel.addEventListener('mouseleave', () => {
-        slideInterval = setInterval(autoSlide, 5000);
-    });
-}
-
-// 键盘导航
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-        changeSlide(-1);
-    } else if (e.key === 'ArrowRight') {
-        changeSlide(1);
-    }
-});
-
 // 确保DOM加载完成后初始化轮播
 document.addEventListener('DOMContentLoaded', function() {
-    // 重新获取轮播元素
+    // 轮播功能
+    let currentSlideIndex = 0;
     const slides = document.querySelectorAll('.hero-slide');
     const indicators = document.querySelectorAll('.indicator');
-    
+
+    function showSlide(index) {
+        // 隐藏所有幻灯片
+        slides.forEach(slide => slide.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        // 显示当前幻灯片
+        if (slides[index]) {
+            slides[index].classList.add('active');
+        }
+        if (indicators[index]) {
+            indicators[index].classList.add('active');
+        }
+    }
+
+    function changeSlide(direction) {
+        currentSlideIndex += direction;
+        
+        if (currentSlideIndex >= slides.length) {
+            currentSlideIndex = 0;
+        } else if (currentSlideIndex < 0) {
+            currentSlideIndex = slides.length - 1;
+        }
+        
+        showSlide(currentSlideIndex);
+    }
+
+    function currentSlide(index) {
+        currentSlideIndex = index - 1;
+        showSlide(currentSlideIndex);
+    }
+
+    // 自动轮播
+    function autoSlide() {
+        changeSlide(1);
+    }
+
+    // 将函数设为全局，供HTML调用
+    window.changeSlide = changeSlide;
+    window.currentSlide = currentSlide;
+
     if (slides.length > 0) {
         // 确保第一张图片显示
         showSlide(0);
@@ -410,6 +321,19 @@ document.addEventListener('DOMContentLoaded', function() {
             heroCarousel.addEventListener('mouseleave', () => {
                 slideInterval = setInterval(autoSlide, 5000);
             });
+        }
+    }
+});
+
+// 键盘导航
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+        if (typeof changeSlide === 'function') {
+            changeSlide(-1);
+        }
+    } else if (e.key === 'ArrowRight') {
+        if (typeof changeSlide === 'function') {
+            changeSlide(1);
         }
     }
 });
