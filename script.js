@@ -96,17 +96,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// 观察需要动画的元素
-document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.content-block, .activity-card, .member-card, .video-container, .music-player');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-});
-
 // 视频播放控制
 document.addEventListener('DOMContentLoaded', () => {
     const videos = document.querySelectorAll('video');
@@ -178,17 +167,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// 页面加载完成后的初始化
-document.addEventListener('DOMContentLoaded', () => {
-    // 添加页面加载动画
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
-});
-
 // 键盘导航支持
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -212,11 +190,6 @@ const imageObserver = new IntersectionObserver((entries) => {
             }
         }
     });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const lazyImages = document.querySelectorAll('img[data-src]');
-    lazyImages.forEach(img => imageObserver.observe(img));
 });
 
 // 触摸滑动支持
@@ -257,53 +230,62 @@ document.addEventListener('touchend', (e) => {
     startY = 0;
 });
 
+// 轮播功能
+let currentSlideIndex = 0;
+let slides = [];
+let indicators = [];
+
+function showSlide(index) {
+    if (slides.length === 0) return;
+    
+    // 隐藏所有幻灯片
+    slides.forEach(slide => slide.classList.remove('active'));
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+    
+    // 显示当前幻灯片
+    if (slides[index]) {
+        slides[index].classList.add('active');
+    }
+    if (indicators[index]) {
+        indicators[index].classList.add('active');
+    }
+}
+
+function changeSlide(direction) {
+    if (slides.length === 0) return;
+    
+    currentSlideIndex += direction;
+    
+    if (currentSlideIndex >= slides.length) {
+        currentSlideIndex = 0;
+    } else if (currentSlideIndex < 0) {
+        currentSlideIndex = slides.length - 1;
+    }
+    
+    showSlide(currentSlideIndex);
+}
+
+function currentSlide(index) {
+    if (slides.length === 0) return;
+    
+    currentSlideIndex = index - 1;
+    showSlide(currentSlideIndex);
+}
+
+function autoSlide() {
+    changeSlide(1);
+}
+
+// 将函数设为全局，供HTML调用
+window.changeSlide = changeSlide;
+window.currentSlide = currentSlide;
+
 // 确保DOM加载完成后初始化轮播
 document.addEventListener('DOMContentLoaded', function() {
-    // 轮播功能
-    let currentSlideIndex = 0;
-    const slides = document.querySelectorAll('.hero-slide');
-    const indicators = document.querySelectorAll('.indicator');
-
-    function showSlide(index) {
-        // 隐藏所有幻灯片
-        slides.forEach(slide => slide.classList.remove('active'));
-        indicators.forEach(indicator => indicator.classList.remove('active'));
-        
-        // 显示当前幻灯片
-        if (slides[index]) {
-            slides[index].classList.add('active');
-        }
-        if (indicators[index]) {
-            indicators[index].classList.add('active');
-        }
-    }
-
-    function changeSlide(direction) {
-        currentSlideIndex += direction;
-        
-        if (currentSlideIndex >= slides.length) {
-            currentSlideIndex = 0;
-        } else if (currentSlideIndex < 0) {
-            currentSlideIndex = slides.length - 1;
-        }
-        
-        showSlide(currentSlideIndex);
-    }
-
-    function currentSlide(index) {
-        currentSlideIndex = index - 1;
-        showSlide(currentSlideIndex);
-    }
-
-    // 自动轮播
-    function autoSlide() {
-        changeSlide(1);
-    }
-
-    // 将函数设为全局，供HTML调用
-    window.changeSlide = changeSlide;
-    window.currentSlide = currentSlide;
-
+    // 获取轮播元素
+    slides = document.querySelectorAll('.hero-slide');
+    indicators = document.querySelectorAll('.indicator');
+    
     if (slides.length > 0) {
         // 确保第一张图片显示
         showSlide(0);
@@ -322,18 +304,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 slideInterval = setInterval(autoSlide, 5000);
             });
         }
+        
+        // 观察需要动画的元素
+        const animatedElements = document.querySelectorAll('.content-block, .activity-card, .member-card, .video-container, .music-player');
+        animatedElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+        
+        // 懒加载图片
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        lazyImages.forEach(img => imageObserver.observe(img));
     }
 });
 
 // 键盘导航
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
-        if (typeof changeSlide === 'function') {
-            changeSlide(-1);
-        }
+        changeSlide(-1);
     } else if (e.key === 'ArrowRight') {
-        if (typeof changeSlide === 'function') {
-            changeSlide(1);
-        }
+        changeSlide(1);
     }
 });

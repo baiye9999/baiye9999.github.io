@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播调试页面</title>
+    <style>
+        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; }
+        .hero-carousel {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border: 2px solid #FF69B4;
+            border-radius: 10px;
+            background: #f0f0f0;
+        }
+        .hero-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .hero-slide.active {
+            display: block;
+        }
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+        .hero-btn {
+            background: rgba(255, 105, 180, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-btn:hover {
+            background: rgba(255, 20, 147, 0.9);
+            transform: scale(1.1);
+        }
+        .hero-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .indicator.active {
+            background: #FF69B4;
+            transform: scale(1.2);
+        }
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .debug-info {
+            margin: 20px 0;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎀 轮播调试页面</h1>
+    
+    <div class="debug-info">
+        <p><strong>调试信息：</strong></p>
+        <p id="slide-count">轮播图片数量: 0</p>
+        <p id="indicator-count">指示器数量: 0</p>
+        <p id="current-slide">当前图片: 0</p>
+    </div>
+    
+    <div class="hero-carousel">
+        <div class="hero-slide active">
+            <img src="images/hero/hero-banner-1.svg" alt="图片1" onload="console.log('图片1加载成功')" onerror="console.log('图片1加载失败')">
+        </div>
+        <div class="hero-slide">
+            <img src="images/hero/hero-banner-2.svg" alt="图片2" onload="console.log('图片2加载成功')" onerror="console.log('图片2加载失败')">
+        </div>
+        <div class="hero-slide">
+            <img src="images/hero/hero-banner-3.svg" alt="图片3" onload="console.log('图片3加载成功')" onerror="console.log('图片3加载失败')">
+        </div>
+        <div class="hero-controls">
+            <button class="hero-btn prev" onclick="changeSlide(-1)">❮</button>
+            <button class="hero-btn next" onclick="changeSlide(1)">❯</button>
+        </div>
+        <div class="hero-indicators">
+            <span class="indicator active" onclick="currentSlide(1)"></span>
+            <span class="indicator" onclick="currentSlide(2)"></span>
+            <span class="indicator" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+
+    <script>
+        // 轮播功能
+        let currentSlideIndex = 0;
+        let slides = [];
+        let indicators = [];
+
+        function showSlide(index) {
+            if (slides.length === 0) return;
+            
+            // 隐藏所有幻灯片
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            // 显示当前幻灯片
+            if (slides[index]) {
+                slides[index].classList.add('active');
+            }
+            if (indicators[index]) {
+                indicators[index].classList.add('active');
+            }
+            
+            // 更新调试信息
+            document.getElementById('current-slide').textContent = `当前图片: ${index + 1}`;
+        }
+
+        function changeSlide(direction) {
+            if (slides.length === 0) return;
+            
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex >= slides.length) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = slides.length - 1;
+            }
+            
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            if (slides.length === 0) return;
+            
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        function autoSlide() {
+            changeSlide(1);
+        }
+
+        // 将函数设为全局，供HTML调用
+        window.changeSlide = changeSlide;
+        window.currentSlide = currentSlide;
+
+        // 确保DOM加载完成后初始化轮播
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM加载完成，开始初始化轮播');
+            
+            // 获取轮播元素
+            slides = document.querySelectorAll('.hero-slide');
+            indicators = document.querySelectorAll('.indicator');
+            
+            console.log('找到轮播图片数量:', slides.length);
+            console.log('找到指示器数量:', indicators.length);
+            
+            // 更新调试信息
+            document.getElementById('slide-count').textContent = `轮播图片数量: ${slides.length}`;
+            document.getElementById('indicator-count').textContent = `指示器数量: ${indicators.length}`;
+            
+            if (slides.length > 0) {
+                // 确保第一张图片显示
+                showSlide(0);
+                
+                // 启动自动轮播
+                let slideInterval = setInterval(autoSlide, 5000);
+                
+                // 鼠标悬停时暂停自动轮播
+                const heroCarousel = document.querySelector('.hero-carousel');
+                if (heroCarousel) {
+                    heroCarousel.addEventListener('mouseenter', () => {
+                        clearInterval(slideInterval);
+                    });
+                    
+                    heroCarousel.addEventListener('mouseleave', () => {
+                        slideInterval = setInterval(autoSlide, 5000);
+                    });
+                }
+                
+                console.log('轮播初始化完成');
+            } else {
+                console.log('未找到轮播图片');
+            }
+        });
+    </script>
+</body>
+</html>
