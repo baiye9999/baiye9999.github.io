@@ -1,37 +1,49 @@
 <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="feiqiuBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FF69B4;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FF1493;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
     </linearGradient>
     <linearGradient id="feiqiuText" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#FFE4E1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="flowerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:0.2" />
     </linearGradient>
   </defs>
   
   <!-- 背景圆形 -->
   <rect width="100%" height="100%" fill="url(#feiqiuBg)" rx="100"/>
   
-  <!-- 装饰性花朵 -->
-  <circle cx="50" cy="50" r="8" fill="rgba(255,255,255,0.3)"/>
-  <circle cx="150" cy="50" r="6" fill="rgba(255,255,255,0.2)"/>
-  <circle cx="50" cy="150" r="6" fill="rgba(255,255,255,0.2)"/>
-  <circle cx="150" cy="150" r="8" fill="rgba(255,255,255,0.3)"/>
+  <!-- 装饰性花朵背景 -->
+  <circle cx="100" cy="100" r="80" fill="url(#flowerBg)"/>
+  
+  <!-- 花朵装饰 -->
+  <circle cx="60" cy="60" r="6" fill="#FFD700" opacity="0.8"/>
+  <circle cx="140" cy="60" r="5" fill="#FFD700" opacity="0.6"/>
+  <circle cx="60" cy="140" r="5" fill="#FFD700" opacity="0.6"/>
+  <circle cx="140" cy="140" r="6" fill="#FFD700" opacity="0.8"/>
+  <circle cx="100" cy="50" r="4" fill="#FFD700" opacity="0.7"/>
+  <circle cx="100" cy="150" r="4" fill="#FFD700" opacity="0.7"/>
+  <circle cx="50" cy="100" r="4" fill="#FFD700" opacity="0.7"/>
+  <circle cx="150" cy="100" r="4" fill="#FFD700" opacity="0.7"/>
   
   <!-- 中心头像区域 -->
-  <circle cx="100" cy="80" r="40" fill="white" opacity="0.9"/>
+  <circle cx="100" cy="100" r="50" fill="white" opacity="0.95"/>
   
-  <!-- 非酋头像 - 使用emoji风格 -->
-  <text x="100" y="90" font-family="Arial, sans-serif" font-size="32" text-anchor="middle">😤</text>
+  <!-- 角色形象 - 使用emoji风格 -->
+  <text x="100" y="90" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">👸</text>
   
   <!-- 名字 -->
-  <text x="100" y="130" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="url(#feiqiuText)">请叫我</text>
-  <text x="100" y="145" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="url(#feiqiuText)">非酋</text>
+  <text x="100" y="120" font-family="Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="url(#feiqiuText)">请叫我</text>
+  <text x="100" y="135" font-family="Arial, sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="url(#feiqiuText)">非酋</text>
   
   <!-- 职位 -->
-  <text x="100" y="165" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">社长</text>
+  <text x="100" y="155" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">社长</text>
   
   <!-- 标签 -->
-  <text x="100" y="180" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#FFE4E1">虹虹玩家</text>
+  <text x="100" y="170" font-family="Arial, sans-serif" font-size="9" text-anchor="middle" fill="#FFE4E1">虹虹玩家</text>
 </svg>
