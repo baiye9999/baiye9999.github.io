@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态分页测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .info-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+        .screen-info {
+            background: #f3e5f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .member-card {
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .pagination {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .page-dot {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #FFE4E1;
+            color: #FF69B4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .page-dot:hover {
+            background: #FFB6C1;
+            transform: scale(1.1);
+        }
+        .page-dot.active {
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            color: white;
+            transform: scale(1.2);
+        }
+        .page-ellipsis {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #FFE4E1;
+            color: #FF69B4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            user-select: none;
+            pointer-events: none;
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        button {
+            background: #FF69B4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        button:hover {
+            background: #FF1493;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>动态分页功能测试</h1>
+        
+        <div class="info-box">
+            <h3>功能说明</h3>
+            <p>此页面演示动态分页功能，根据屏幕宽度自动调整每页显示的成员数量：</p>
+            <ul>
+                <li>大屏幕 (≥1200px): 显示6个成员</li>
+                <li>中等屏幕 (≥992px): 显示5个成员</li>
+                <li>平板 (≥768px): 显示4个成员</li>
+                <li>小平板 (≥576px): 显示3个成员</li>
+                <li>手机 (<576px): 显示2个成员</li>
+            </ul>
+        </div>
+        
+        <div class="screen-info">
+            <strong>当前屏幕宽度:</strong> <span id="screen-width"></span>px<br>
+            <strong>每页显示成员数:</strong> <span id="members-per-page"></span>个<br>
+            <strong>总页数:</strong> <span id="total-pages"></span>页<br>
+            <strong>当前页:</strong> <span id="current-page"></span>
+        </div>
+        
+        <div class="members-grid" id="members-grid">
+            <!-- 成员卡片将在这里动态生成 -->
+        </div>
+        
+        <div class="pagination" id="pagination">
+            <!-- 分页按钮将在这里动态生成 -->
+        </div>
+        
+        <div class="controls">
+            <button onclick="changePage(-1)">上一页</button>
+            <button onclick="changePage(1)">下一页</button>
+            <button onclick="refreshData()">刷新数据</button>
+        </div>
+    </div>
+
+    <script>
+        // 模拟成员数据
+        const mockMembers = [
+            {name: "松仁糖", role: "社长"},
+            {name: "请叫我非酋", role: "善法天"},
+            {name: "许静影", role: "沉默着欢喜"},
+            {name: "盲人司机", role: "橘子茶泡冰"},
+            {name: "独孤萧遥", role: "小阳春梗"},
+            {name: "坟灼", role: "月月如愿呢"},
+            {name: "京祠", role: "玫瑾"},
+            {name: "若墨寒", role: "里里狸"},
+            {name: "萧唤云", role: "学医救不了哎"},
+            {name: "闪闪不是闪", role: "鸾愔"},
+            {name: "乘雲氣", role: "江水舡"},
+            {name: "寒羽始翼", role: "潍倾城"},
+            {name: "江怜蔚", role: "鹅粮"},
+            {name: "不该去羡慕", role: "曲尽忘归尘"},
+            {name: "栗安遥", role: "夏夏策"},
+            {name: "千殇柔情", role: "尘星傑"},
+            {name: "阎枫浮", role: "江湖小生哦"},
+            {name: "景知遥", role: "知旧林"},
+            {name: "一玲宁", role: "晏雨雨"},
+            {name: "楚云枊", role: "昕凌璇"},
+            {name: "王珐财", role: "一根粗大腿"},
+            {name: "青衣负剑", role: "鹤歅"},
+            {name: "锦言", role: "涞柯"},
+            {name: "由八一", role: "大家闺秀"},
+            {name: "如清秋", role: "亓峇"},
+            {name: "浮羽渡寒川", role: "濯闻水"},
+            {name: "玉锦逐", role: "余本鱼"},
+            {name: "神秀山、阮秀", role: "剑花夕晨"},
+            {name: "师晨", role: "帝小萌"},
+            {name: "刘梦绮", role: "桉槐柠"},
+            {name: "风信子呀", role: "圣主小雨"},
+            {name: "司空大河", role: "江欣堰"},
+            {name: "苏显儿", role: "成员"}
+        ];
+
+        let membersPerPage = 3;
+        let currentPage = 1;
+        let totalPages = 0;
+
+        // 计算每页显示的成员数量
+        function calculateMembersPerPage() {
+            const screenWidth = window.innerWidth;
+            
+            if (screenWidth >= 1200) {
+                return 6;
+            } else if (screenWidth >= 992) {
+                return 5;
+            } else if (screenWidth >= 768) {
+                return 4;
+            } else if (screenWidth >= 576) {
+                return 3;
+            } else {
+                return 2;
+            }
+        }
+
+        // 更新显示信息
+        function updateInfo() {
+            document.getElementById('screen-width').textContent = window.innerWidth;
+            document.getElementById('members-per-page').textContent = membersPerPage;
+            document.getElementById('total-pages').textContent = totalPages;
+            document.getElementById('current-page').textContent = currentPage;
+        }
+
+        // 生成成员卡片
+        function generateMembers() {
+            const grid = document.getElementById('members-grid');
+            const { startIndex, endIndex } = getCurrentPageMembers();
+            
+            grid.innerHTML = '';
+            
+            for (let i = startIndex; i < endIndex; i++) {
+                if (i >= mockMembers.length) break;
+                
+                const member = mockMembers[i];
+                const card = document.createElement('div');
+                card.className = 'member-card';
+                card.innerHTML = `
+                    <h4>${member.name}</h4>
+                    <p>${member.role}</p>
+                `;
+                grid.appendChild(card);
+            }
+        }
+
+        // 生成分页
+        function generatePagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+            
+            const maxVisiblePages = 7;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            // 添加第一页和省略号
+            if (startPage > 1) {
+                addPageButton(1);
+                if (startPage > 2) {
+                    addEllipsis();
+                }
+            }
+            
+            // 添加中间的分页按钮
+            for (let i = startPage; i <= endPage; i++) {
+                addPageButton(i);
+            }
+            
+            // 添加省略号和最后一页
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    addEllipsis();
+                }
+                addPageButton(totalPages);
+            }
+        }
+
+        function addPageButton(pageNum) {
+            const button = document.createElement('span');
+            button.className = 'page-dot';
+            if (pageNum === currentPage) button.classList.add('active');
+            button.textContent = pageNum;
+            button.onclick = () => goToPage(pageNum);
+            document.getElementById('pagination').appendChild(button);
+        }
+
+        function addEllipsis() {
+            const ellipsis = document.createElement('span');
+            ellipsis.className = 'page-ellipsis';
+            ellipsis.textContent = '...';
+            document.getElementById('pagination').appendChild(ellipsis);
+        }
+
+        function getCurrentPageMembers() {
+            const startIndex = (currentPage - 1) * membersPerPage;
+            const endIndex = Math.min(startIndex + membersPerPage, mockMembers.length);
+            return { startIndex, endIndex };
+        }
+
+        function goToPage(pageNum) {
+            if (pageNum < 1 || pageNum > totalPages) return;
+            currentPage = pageNum;
+            updateInfo();
+            generateMembers();
+            generatePagination();
+        }
+
+        function changePage(direction) {
+            const newPage = currentPage + direction;
+            if (newPage >= 1 && newPage <= totalPages) {
+                goToPage(newPage);
+            }
+        }
+
+        function refreshData() {
+            const newMembersPerPage = calculateMembersPerPage();
+            if (newMembersPerPage !== membersPerPage) {
+                membersPerPage = newMembersPerPage;
+                totalPages = Math.ceil(mockMembers.length / membersPerPage);
+                if (currentPage > totalPages) {
+                    currentPage = totalPages;
+                }
+            }
+            updateInfo();
+            generateMembers();
+            generatePagination();
+        }
+
+        // 初始化
+        function init() {
+            membersPerPage = calculateMembersPerPage();
+            totalPages = Math.ceil(mockMembers.length / membersPerPage);
+            updateInfo();
+            generateMembers();
+            generatePagination();
+            
+            // 监听窗口大小变化
+            window.addEventListener('resize', debounce(refreshData, 250));
+        }
+
+        // 防抖函数
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
