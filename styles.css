@@ -762,7 +762,7 @@ body {
     transform: scale(1.1);
 }
 
-.members-indicators {
+.members-pagination {
     display: flex;
     justify-content: center;
     gap: 10px;
