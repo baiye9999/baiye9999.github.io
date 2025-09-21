@@ -331,22 +331,25 @@ document.addEventListener('keydown', (e) => {
 
 // 成员轮播功能
 let currentMembersSlideIndex = 0;
+// 成员轮播功能 - 简化版本
 let membersSlides = [];
 let membersIndicators = [];
 let currentMembersSlideIndex = 0;
-let membersContainer = null;
 
 function showMembersSlide(index) {
-    if (membersSlides.length === 0 || !membersContainer) return;
+    if (membersSlides.length === 0) return;
     
-    // 更新指示器
-    membersIndicators.forEach((indicator, i) => {
-        indicator.classList.toggle("active", i === index);
-    });
+    // 隐藏所有幻灯片
+    membersSlides.forEach(slide => slide.classList.remove('active'));
+    membersIndicators.forEach(indicator => indicator.classList.remove('active'));
     
-    // 移动容器
-    const translateX = -index * 100;
-    membersContainer.style.transform = `translateX(${translateX}%)`;
+    // 显示当前幻灯片
+    if (membersSlides[index]) {
+        membersSlides[index].classList.add('active');
+    }
+    if (membersIndicators[index]) {
+        membersIndicators[index].classList.add('active');
+    }
     
     currentMembersSlideIndex = index;
 }
@@ -365,28 +368,21 @@ function changeMembersSlide(direction) {
     showMembersSlide(newIndex);
 }
 
-function currentMembersSlide(index) {
-    if (membersSlides.length === 0) return;
-    showMembersSlide(index);
-}
-
 function autoMembersSlide() {
     changeMembersSlide(1);
 }
 
 // 将函数设为全局，供HTML调用
 window.changeMembersSlide = changeMembersSlide;
-window.currentMembersSlide = currentMembersSlide;
 window.showMembersSlide = showMembersSlide;
 
 // 确保DOM加载完成后初始化成员轮播
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function() {
     // 获取成员轮播元素
-    membersContainer = document.querySelector(".members-container");
-    membersSlides = document.querySelectorAll(".members-slide");
-    membersIndicators = document.querySelectorAll(".members-indicator");
+    membersSlides = document.querySelectorAll('.members-slide');
+    membersIndicators = document.querySelectorAll('.members-indicator');
     
-    if (membersSlides.length > 0 && membersContainer) {
+    if (membersSlides.length > 0) {
         // 确保第一张图片显示
         showMembersSlide(0);
         
@@ -394,13 +390,13 @@ document.addEventListener("DOMContentLoaded", function() {
         let membersSlideInterval = setInterval(autoMembersSlide, 8000);
         
         // 鼠标悬停时暂停自动轮播
-        const membersCarousel = document.querySelector(".members-carousel");
+        const membersCarousel = document.querySelector('.members-carousel');
         if (membersCarousel) {
-            membersCarousel.addEventListener("mouseenter", () => {
+            membersCarousel.addEventListener('mouseenter', () => {
                 clearInterval(membersSlideInterval);
             });
             
-            membersCarousel.addEventListener("mouseleave", () => {
+            membersCarousel.addEventListener('mouseleave', () => {
                 membersSlideInterval = setInterval(autoMembersSlide, 8000);
             });
         }

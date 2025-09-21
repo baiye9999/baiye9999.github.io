@@ -703,11 +703,6 @@ body {
 }
 
 /* 成员轮播样式 */
-.members-carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
 
 .members-container {
     position: relative;
@@ -815,6 +810,107 @@ body {
     justify-content: space-between;
     padding: 0 20px;
     pointer-events: none;
+}
+
+.members-btn {
+    background: rgba(255, 105, 180, 0.8);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.members-btn:hover {
+    background: rgba(255, 20, 147, 0.9);
+    transform: scale(1.1);
+}
+
+.members-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.members-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 105, 180, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.members-indicator.active {
+    background: #FF69B4;
+    transform: scale(1.2);
+}
+
+.members-indicator:hover {
+    background: rgba(255, 105, 180, 0.6);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .members-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+/* 成员轮播样式 - 简化版本 */
+.members-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.members-container {
+    position: relative;
+    width: 100%;
+}
+
+.members-slide {
+    display: none;
+    width: 100%;
+}
+
+.members-slide.active {
+    display: block;
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.members-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: none;
+    z-index: 10;
 }
 
 .members-btn {
