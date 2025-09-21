@@ -6,6 +6,7 @@
     <title>睡不着打给我</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -42,32 +43,6 @@
 
     <!-- 首页横幅 -->
     <section id="home" class="hero">
-        <div class="hero-banner">
-            <div class="hero-carousel">
-                <div class="hero-slide active">
-                    <img src="images/hero/hero-banner-1.svg" alt="睡不着打给我百业组织">
-                </div>
-                <div class="hero-slide">
-                    <img src="images/hero/hero-banner-2.svg" alt="睡不着打给我百业组织">
-                </div>
-                <div class="hero-slide">
-                    <img src="images/hero/hero-banner-3.svg" alt="睡不着打给我百业组织">
-                </div>
-            </div>
-            <div class="hero-controls">
-                <button class="hero-btn prev" onclick="changeSlide(-1)">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="hero-btn next" onclick="changeSlide(1)">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            <div class="hero-indicators">
-                <span class="indicator active" onclick="currentSlide(1)"></span>
-                <span class="indicator" onclick="currentSlide(2)"></span>
-                <span class="indicator" onclick="currentSlide(3)"></span>
-            </div>
-        </div>
         <div class="hero-content">
             <div class="container">
                 <div class="hero-text">
@@ -75,12 +50,72 @@
                     <p>展示各流派咸鱼人生的风采</p>
                     <p>我们相信，每个人都有自己的独特价值</p>
                     <div class="hero-buttons">
-                        <button class="btn btn-primary">了解我们</button>
-                        <button class="btn btn-secondary">加入百业</button>
+                        <button class="btn btn-primary">查看百业混剪</button>
+                        <button class="btn btn-secondary">探索百业活动</button>
+                        <button class="btn btn-secondary">结识百业人员</button>
                     </div>
                 </div>
-                <div class="welcome-image">
-                    <img src="images/hero/welcome-image.svg" alt="睡不着打给我">
+            </div>
+        </div>
+    </section>
+
+    <!-- 百业混剪 -->
+    <section id="videos" class="videos-section">
+        <div class="container">
+            <h2 class="section-title">百业混剪</h2>
+            <p class="section-subtitle">生而微末者，侠为其声</p>
+            
+            <div class="video-carousel">
+                <div class="video-container">
+                    <div class="video-slide active">
+                        <div class="video-content">
+                            <h3>睡不着打给我</h3>
+                            <p>展示各流派咸鱼人生的风采，百业路远，精彩纷呈</p>
+                            <div class="video-player">
+                                <video controls>
+                                    <source src="videos/sample.mp4" type="video/mp4">
+                                    您的浏览器不支持视频播放。
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-controls">
+                    <button class="video-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="video-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 百业活动 -->
+    <section id="activities" class="activities-section">
+        <div class="container">
+            <h2 class="section-title">百业活动</h2>
+            <p class="section-subtitle">各行各业，精彩纷呈</p>
+            
+            <div class="activities-carousel">
+                <div class="activities-container">
+                    <div class="activity-slide active">
+                        <div class="activity-card">
+                            <div class="activity-image">
+                                <img src="images/activities/activity-teamwork.svg" alt="互帮互助五人本">
+                            </div>
+                            <div class="activity-content">
+                                <h3>互帮互助五人本</h3>
+                                <p>百业成员互帮互助，齐心协力，共同拿下五人本！</p>
+                                <div class="activity-details">
+                                    <p><strong>主持：</strong>任何百业成员</p>
+                                    <p><strong>时间：</strong>任何时间</p>
+                                    <p><strong>地点：</strong>任何地点</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="activities-controls">
+                    <button class="activity-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="activity-btn next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -316,9 +351,22 @@
                     <p>睡不着打给我致力于展示各流派咸鱼人生的风采。</p>
                     <p>我们相信，每个人都有自己的独特价值。</p>
                     <p>睡不着打给我致力于展示各流派咸鱼人生的风采。</p>
-                    <div class="join-buttons">
-                        <button class="btn btn-primary">立即加入</button>
-                        <button class="btn btn-secondary">了解更多</button>
+                    <p>我们相信，每个人都有自己的独特价值。</p>
+                </div>
+                <div class="join-details">
+                    <div class="join-card">
+                        <h4>睡不着打给我</h4>
+                        <p>展示各流派咸鱼人才，弘扬咸鱼精神</p>
+                    </div>
+                    <div class="join-actions">
+                        <div class="join-action">
+                            <h5>加入我们</h5>
+                            <p>加入我们，共建美好燕云</p>
+                        </div>
+                        <div class="join-action">
+                            <h5>关注我们</h5>
+                            <p>抖音：松仁糖</p>
+                        </div>
                     </div>
                 </div>
             </div>
