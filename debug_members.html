@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成员数据调试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .member { border: 1px solid #ccc; margin: 10px 0; padding: 10px; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>成员数据调试页面</h1>
+    <div id="status"></div>
+    <div id="members-list"></div>
+
+    <script>
+        async function loadMembersData() {
+            const statusDiv = document.getElementById('status');
+            const membersListDiv = document.getElementById('members-list');
+            
+            try {
+                statusDiv.innerHTML = '<p>正在加载成员数据...</p>';
+                
+                const response = await fetch('members.json');
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('Loaded data:', data);
+                
+                statusDiv.innerHTML = '<p class="success">成员数据加载成功！</p>';
+                
+                if (data.members && data.members.length > 0) {
+                    membersListDiv.innerHTML = '<h2>成员列表：</h2>';
+                    data.members.forEach((member, index) => {
+                        const memberDiv = document.createElement('div');
+                        memberDiv.className = 'member';
+                        memberDiv.innerHTML = `
+                            <h3>${index + 1}. ${member.name}</h3>
+                            <p><strong>职位：</strong>${member.role}</p>
+                            <p><strong>头像：</strong>${member.avatar}</p>
+                            <p><strong>标签：</strong>${member.tags.join(', ')}</p>
+                            <p><strong>描述：</strong>${member.description}</p>
+                        `;
+                        membersListDiv.appendChild(memberDiv);
+                    });
+                } else {
+                    membersListDiv.innerHTML = '<p class="error">没有找到成员数据</p>';
+                }
+                
+            } catch (error) {
+                console.error('Error loading members data:', error);
+                statusDiv.innerHTML = `<p class="error">加载失败：${error.message}</p>`;
+                membersListDiv.innerHTML = '<p class="error">无法加载成员数据</p>';
+            }
+        }
+        
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', loadMembersData);
+    </script>
+</body>
+</html>
