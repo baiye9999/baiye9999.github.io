@@ -328,125 +328,226 @@ document.addEventListener('keydown', (e) => {
         changeSlide(1);
     }
 });
-document.addEventListener('DOMContentLoaded', function() {
-    initMembersDisplay();
-    
-    // 为所有缩略图添加点击事件
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.member-thumbnail')) {
-            const thumbnail = e.target.closest('.member-thumbnail');
-            const memberIndex = parseInt(thumbnail.getAttribute('data-member'));
-            if (!isNaN(memberIndex)) {
-                selectMember(memberIndex);
-            }
-        }
-    });
-});
 
-// 更新成员数据 - 参考风华无缺网站
-const membersData = [
-    {
-        name: "松仁糖",
-        role: "社长",
-        avatar: "images/members/member-songrentang.svg",
-        tags: ["虹虹玩家", "紫色韵味", "开服玩家"],
-        description: "为人仁厚，重情重义。"
-    },
-    {
-        name: "成员2",
-        role: "副社长",
-        avatar: "images/members/member-2.svg",
-        tags: ["技术专家", "团队核心"],
-        description: "技术精湛，乐于助人。"
-    },
-    {
-        name: "成员3",
-        role: "活动策划",
-        avatar: "images/members/member-3.svg",
-        tags: ["创意无限", "组织能力强"],
-        description: "富有创意，善于组织活动。"
-    },
-    {
-        name: "成员4",
-        role: "技术总监",
-        avatar: "images/members/member-4.svg",
-        tags: ["编程高手", "系统架构"],
-        description: "技术全面，架构能力强。"
-    },
-    {
-        name: "成员5",
-        role: "运营专员",
-        avatar: "images/members/member-5.svg",
-        tags: ["用户运营", "数据分析"],
-        description: "擅长用户运营和数据分析。"
-    },
-    {
-        name: "成员6",
-        role: "设计师",
-        avatar: "images/members/member-6.svg",
-        tags: ["UI设计", "视觉创意"],
-        description: "设计感强，创意无限。"
-    },
-    {
-        name: "成员7",
-        role: "测试工程师",
-        avatar: "images/members/member-7.svg",
-        tags: ["质量保证", "自动化测试"],
-        description: "注重质量，测试经验丰富。"
-    },
-    {
-        name: "成员8",
-        role: "产品经理",
-        avatar: "images/members/member-8.svg",
-        tags: ["产品规划", "需求分析"],
-        description: "产品思维强，善于分析需求。"
-    },
-    {
-        name: "成员9",
-        role: "市场专员",
-        avatar: "images/members/member-9.svg",
-        tags: ["市场推广", "品牌建设"],
-        description: "市场敏感度高，推广能力强。"
-    },
-    {
-        name: "成员10",
-        role: "客服主管",
-        avatar: "images/members/member-10.svg",
-        tags: ["客户服务", "沟通协调"],
-        description: "服务意识强，沟通能力佳。"
-    },
-    {
-        name: "成员11",
-        role: "财务专员",
-        avatar: "images/members/member-11.svg",
-        tags: ["财务管理", "成本控制"],
-        description: "财务专业，成本意识强。"
-    },
-    {
-        name: "成员1",
-        role: "人事专员",
-        avatar: "images/members/member-1.svg",
-        tags: ["人力资源", "团队建设"],
-        description: "人事管理经验丰富，团队建设能力强。"
-    }
-];
-
+// 成员数据相关变量
+let membersData = [];
 let currentMemberIndex = 0;
 
-// 分页相关变量
-const MEMBERS_PER_PAGE = 3; // 每页显示3个成员
+// 动态分页相关变量
+let membersPerPage = 3; // 默认值，会根据屏幕宽度动态调整
 let currentPage = 1;
-let totalPages = Math.ceil(membersData.length / MEMBERS_PER_PAGE);
+let totalPages = 0;
+
+// 计算每页显示的成员数量
+function calculateMembersPerPage() {
+    const screenWidth = window.innerWidth;
+    
+    if (screenWidth >= 1200) {
+        // 大屏幕：显示6个成员
+        return 6;
+    } else if (screenWidth >= 992) {
+        // 中等屏幕：显示5个成员
+        return 5;
+    } else if (screenWidth >= 768) {
+        // 平板：显示4个成员
+        return 4;
+    } else if (screenWidth >= 576) {
+        // 小平板：显示3个成员
+        return 3;
+    } else {
+        // 手机：显示2个成员
+        return 2;
+    }
+}
+
+// 更新分页设置
+function updatePaginationSettings() {
+    const newMembersPerPage = calculateMembersPerPage();
+    
+    if (newMembersPerPage !== membersPerPage) {
+        membersPerPage = newMembersPerPage;
+        totalPages = Math.ceil(membersData.length / membersPerPage);
+        
+        // 确保当前页不超出范围
+        if (currentPage > totalPages) {
+            currentPage = totalPages;
+        }
+        
+        // 重新生成分页和缩略图
+        generatePagination();
+        updateThumbnailsForPage();
+        updatePaginationDisplay();
+    }
+}
+
+// 从JSON文件加载成员数据
+async function loadMembersData() {
+    try {
+        const response = await fetch('members.json');
+        if (!response.ok) {
+            throw new Error('Failed to load members data');
+        }
+        const data = await response.json();
+        membersData = data.members || [];
+        
+        // 计算初始分页设置
+        membersPerPage = calculateMembersPerPage();
+        totalPages = Math.ceil(membersData.length / membersPerPage);
+        
+        return true;
+    } catch (error) {
+        console.error('Error loading members data:', error);
+        // 如果加载失败，使用默认数据
+        membersData = [
+            {
+                name: "松仁糖",
+                role: "社长",
+                avatar: "images/members/member-songrentang.svg",
+                tags: ["虹虹玩家", "紫色韵味", "开服玩家"],
+                description: "为人仁厚，重情重义。"
+            }
+        ];
+        membersPerPage = calculateMembersPerPage();
+        totalPages = Math.ceil(membersData.length / membersPerPage);
+        return false;
+    }
+}
+
+// 动态生成成员缩略图
+function generateMemberThumbnails() {
+    const gallery = document.getElementById('members-gallery');
+    if (!gallery) return;
+    
+    gallery.innerHTML = '';
+    
+    membersData.forEach((member, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = 'member-thumbnail';
+        thumbnail.setAttribute('data-member', index);
+        
+        thumbnail.innerHTML = `
+            <img src="${member.avatar}" alt="${member.name}">
+            <span class="member-name">${member.name}</span>
+        `;
+        
+        gallery.appendChild(thumbnail);
+    });
+}
+
+// 动态生成分页 - 修复版本
+function generatePagination() {
+    const pagination = document.getElementById('pagination');
+    if (!pagination) return;
+    
+    pagination.innerHTML = '';
+    
+    // 如果总页数少于等于7页，直接显示所有页码
+    if (totalPages <= 7) {
+        for (let i = 1; i <= totalPages; i++) {
+            const pageDot = document.createElement('span');
+            pageDot.className = 'page-dot';
+            if (i === currentPage) pageDot.classList.add('active');
+            pageDot.textContent = i;
+            pageDot.onclick = () => goToPage(i);
+            pagination.appendChild(pageDot);
+        }
+        return;
+    }
+    
+    // 总页数大于7页的情况
+    let startPage, endPage;
+    
+    if (currentPage <= 4) {
+        // 当前页在前4页，显示1-7...最后一页
+        startPage = 1;
+        endPage = 7;
+    } else if (currentPage >= totalPages - 3) {
+        // 当前页在后4页，显示第一页...最后7页
+        startPage = totalPages - 6;
+        endPage = totalPages;
+    } else {
+        // 当前页在中间，显示第一页...当前页前后各2页...最后一页
+        startPage = currentPage - 2;
+        endPage = currentPage + 2;
+    }
+    
+    // 添加第一页
+    const firstPage = document.createElement('span');
+    firstPage.className = 'page-dot';
+    if (1 === currentPage) firstPage.classList.add('active');
+    firstPage.textContent = '1';
+    firstPage.onclick = () => goToPage(1);
+    pagination.appendChild(firstPage);
+    
+    // 添加第一个省略号
+    if (startPage > 2) {
+        const ellipsis1 = document.createElement('span');
+        ellipsis1.className = 'page-ellipsis';
+        ellipsis1.textContent = '...';
+        pagination.appendChild(ellipsis1);
+    }
+    
+    // 添加中间页码
+    for (let i = startPage; i <= endPage; i++) {
+        if (i === 1 || i === totalPages) continue; // 跳过第一页和最后一页，因为已经单独处理
+        
+        const pageDot = document.createElement('span');
+        pageDot.className = 'page-dot';
+        if (i === currentPage) pageDot.classList.add('active');
+        pageDot.textContent = i;
+        pageDot.onclick = () => goToPage(i);
+        pagination.appendChild(pageDot);
+    }
+    
+    // 添加第二个省略号
+    if (endPage < totalPages - 1) {
+        const ellipsis2 = document.createElement('span');
+        ellipsis2.className = 'page-ellipsis';
+        ellipsis2.textContent = '...';
+        pagination.appendChild(ellipsis2);
+    }
+    
+    // 添加最后一页
+    if (totalPages > 1) {
+        const lastPage = document.createElement('span');
+        lastPage.className = 'page-dot';
+        if (totalPages === currentPage) lastPage.classList.add('active');
+        lastPage.textContent = totalPages;
+        lastPage.onclick = () => goToPage(totalPages);
+        pagination.appendChild(lastPage);
+    }
+}
 
 // 初始化成员展示
-function initMembersDisplay() {
+async function initMembersDisplay() {
+    await loadMembersData();
+    
+    // 生成缩略图和分页
+    generateMemberThumbnails();
+    generatePagination();
+    
     // 初始化分页
     currentPage = 1;
-    totalPages = Math.ceil(membersData.length / MEMBERS_PER_PAGE);
     updatePaginationDisplay();
     updateThumbnailsForPage();
-    updateThumbnailsForPage();    updateMainMember(0);
+    updateMainMember(0);
     updateThumbnails();
+    
+    // 监听窗口大小变化
+    window.addEventListener('resize', debounce(updatePaginationSettings, 250));
+}
+
+// 防抖函数
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
 // 更新主展示区域
@@ -530,11 +631,10 @@ function goToPage(pageNumber) {
     
     currentPage = pageNumber;
     updatePaginationDisplay();
-    // updateThumbnailsForPage();
     updateThumbnailsForPage();
     
     // 跳转到该页的第一个成员
-    const firstMemberIndex = (pageNumber - 1) * MEMBERS_PER_PAGE;
+    const firstMemberIndex = (pageNumber - 1) * membersPerPage;
     selectMember(firstMemberIndex);
 }
 
@@ -550,6 +650,7 @@ function updateThumbnailsForPage() {
         }
     });
 }
+
 function changeMemberPage(direction) {
     let newPage = currentPage + direction;
 
@@ -560,23 +661,17 @@ function changeMemberPage(direction) {
         newPage = totalPages; // 小于第一页时跳转到最后一页
     }
 
-        goToPage(newPage);
+    goToPage(newPage);
 }
 
 function updatePaginationDisplay() {
-    // 更新分页数字的显示状态
-    const pageDots = document.querySelectorAll('.page-dot');
-    pageDots.forEach((dot, index) => {
-        dot.classList.remove('active');
-        if (index + 1 === currentPage) {
-            dot.classList.add('active');
-        }
-    });
+    // 重新生成分页以更新显示
+    generatePagination();
 }
 
 function getCurrentPageMembers() {
-    const startIndex = (currentPage - 1) * MEMBERS_PER_PAGE;
-    const endIndex = Math.min(startIndex + MEMBERS_PER_PAGE, membersData.length);
+    const startIndex = (currentPage - 1) * membersPerPage;
+    const endIndex = Math.min(startIndex + membersPerPage, membersData.length);
     return { startIndex, endIndex };
 }
 
@@ -617,7 +712,6 @@ window.changeMemberPage = changeMemberPage;
 
 // 修改原有的changeMember函数
 window.changeMember = changeMemberWithinPage;
-
 
 // 视频轮播控制
 let currentVideoIndex = 0;

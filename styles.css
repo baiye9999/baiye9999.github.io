@@ -1136,3 +1136,19 @@ body {
     padding: 0 20px !important;
     width: 100% !important;
 }
+
+/* 分页省略号样式 */
+.page-ellipsis {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #FFE4E1;
+    color: #FF69B4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    user-select: none;
+    pointer-events: none;
+}
