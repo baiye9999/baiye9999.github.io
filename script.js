@@ -381,38 +381,52 @@ function updatePaginationSettings() {
 }
 
 // 从JSON文件加载成员数据
-async function loadMembersData() {
-    try {
-        const response = await fetch('members.json');
-        if (!response.ok) {
-            throw new Error('Failed to load members data');
-        }
-        const data = await response.json();
-        membersData = data.members || [];
-        
-        // 计算初始分页设置
-        membersPerPage = calculateMembersPerPage();
-        totalPages = Math.ceil(membersData.length / membersPerPage);
-        
-        return true;
-    } catch (error) {
-        console.error('Error loading members data:', error);
-        // 如果加载失败，使用默认数据
-        membersData = [
-            {
-                name: "松仁糖",
-                role: "社长",
-                avatar: "images/members/member-songrentang.svg",
-                tags: ["虹虹玩家", "紫色韵味", "开服玩家"],
-                description: "为人仁厚，重情重义。"
+// 从JSON文件加载成员数据（带重试机制）
+async function loadMembersData(maxRetries = 3, delay = 1000) {
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            console.log(`尝试第 ${attempt} 次加载成员数据...`);
+            
+            const response = await fetch("members.json");
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
-        ];
-        membersPerPage = calculateMembersPerPage();
-        totalPages = Math.ceil(membersData.length / membersPerPage);
-        return false;
+            
+            const data = await response.json();
+            membersData = data.members || [];
+            
+            // 计算初始分页设置
+            membersPerPage = calculateMembersPerPage();
+            totalPages = Math.ceil(membersData.length / membersPerPage);
+            
+            console.log(`成功加载 ${membersData.length} 个成员数据`);
+            return true;
+            
+        } catch (error) {
+            console.warn(`第 ${attempt} 次尝试失败:`, error.message);
+            
+            if (attempt === maxRetries) {
+                console.error("所有重试失败，使用默认数据");
+                // 如果加载失败，使用默认数据
+                membersData = [
+                    {
+                        name: "松仁糖",
+                        role: "社长",
+                        avatar: "images/members/member-songrentang.svg",
+                        tags: ["虹虹玩家", "紫色韵味", "开服玩家"],
+                        description: "为人仁厚，重情重义。"
+                    }
+                ];
+                membersPerPage = calculateMembersPerPage();
+                totalPages = Math.ceil(membersData.length / membersPerPage);
+                return false;
+            }
+            
+            // 等待后重试
+            await new Promise(resolve => setTimeout(resolve, delay));
+        }
     }
 }
-
 // 动态生成成员缩略图
 function generateMemberThumbnails() {
     const gallery = document.getElementById('members-gallery');
