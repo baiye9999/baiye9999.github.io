@@ -381,52 +381,51 @@ function updatePaginationSettings() {
 }
 
 // 从JSON文件加载成员数据
-// 从JSON文件加载成员数据（带重试机制）
-async function loadMembersData(maxRetries = 3, delay = 1000) {
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
-        try {
-            console.log(`尝试第 ${attempt} 次加载成员数据...`);
-            
-            const response = await fetch("members.json");
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-            }
-            
-            const data = await response.json();
-            membersData = data.members || [];
-            
-            // 计算初始分页设置
-            membersPerPage = calculateMembersPerPage();
-            totalPages = Math.ceil(membersData.length / membersPerPage);
-            
-            console.log(`成功加载 ${membersData.length} 个成员数据`);
-            return true;
-            
-        } catch (error) {
-            console.warn(`第 ${attempt} 次尝试失败:`, error.message);
-            
-            if (attempt === maxRetries) {
-                console.error("所有重试失败，使用默认数据");
-                // 如果加载失败，使用默认数据
-                membersData = [
-                    {
-                        name: "松仁糖",
-                        role: "社长",
-                        avatar: "images/members/member-songrentang.svg",
-                        tags: ["虹虹玩家", "紫色韵味", "开服玩家"],
-                        description: "为人仁厚，重情重义。"
-                    }
-                ];
-                membersPerPage = calculateMembersPerPage();
-                totalPages = Math.ceil(membersData.length / membersPerPage);
-                return false;
-            }
-            
-            // 等待后重试
-            await new Promise(resolve => setTimeout(resolve, delay));
+async function loadMembersData() {
+    try {
+        console.log('🔄 开始加载members.json...');
+        const response = await fetch('members.json');
+        console.log('📡 响应状态:', response.status, response.ok);
+        
+        if (!response.ok) {
+            throw new Error('Failed to load members data');
         }
+        const data = await response.json();
+        console.log('📊 加载的数据:', data);
+        
+        membersData = data.members || [];
+        console.log('👥 成员数据:', membersData.length, '个成员');
+        
+        if (membersData.length > 0) {
+            console.log('🎯 第一个成员:', membersData[0]);
+            console.log('🖼️ 背景图片路径:', membersData[0].background);
+        }
+        
+        // 计算初始分页设置
+        membersPerPage = calculateMembersPerPage();
+        totalPages = Math.ceil(membersData.length / membersPerPage);
+        
+        console.log('✅ 成员数据加载成功');
+        return true;
+    } catch (error) {
+        console.error('❌ 加载成员数据失败:', error);
+        console.log('🔄 使用默认数据...');
+        // 如果加载失败，使用默认数据
+        membersData = [
+            {
+                name: "松仁糖",
+                role: "社长",
+                avatar: "images/members/member-songrentang.svg",
+                tags: ["虹虹玩家", "紫色韵味", "开服玩家"],
+                description: "为人仁厚，重情重义。"
+            }
+        ];
+        membersPerPage = calculateMembersPerPage();
+        totalPages = Math.ceil(membersData.length / membersPerPage);
+        return false;
     }
 }
+
 // 动态生成成员缩略图
 function generateMemberThumbnails() {
     const gallery = document.getElementById('members-gallery');
@@ -566,11 +565,16 @@ function debounce(func, wait) {
 
 // 更新主展示区域
 function updateMainMember(index) {
+    console.log('🔄 更新主成员显示, 索引:', index);
     const member = membersData[index];
-    if (!member) return;
+    console.log('👤 成员数据:', member);
     
-    document.getElementById('main-member-avatar').src = member.avatar;
-    document.getElementById('main-member-avatar').alt = member.name;
+    if (!member) {
+        console.log('❌ 没有找到成员数据');
+        return;
+    }
+    
+    // 头像显示已移除
     document.getElementById('main-member-name').textContent = member.name;
     document.getElementById('main-member-role').textContent = member.role;
     
@@ -585,6 +589,29 @@ function updateMainMember(index) {
     });
     
     document.getElementById('main-member-description').textContent = member.description;
+    
+    // 更新背景图片
+    const mainDisplay = document.querySelector(".member-main-display");
+    console.log('🎨 主显示区域:', mainDisplay);
+    console.log('🖼️ 背景图片路径:', member.background);
+    
+    if (mainDisplay && member.background) {
+        console.log('✅ 设置背景图片:', member.background);
+        // 直接设置背景图片，会覆盖默认的半透明背景
+        mainDisplay.style.backgroundImage = `url(${member.background})`;
+        mainDisplay.style.backgroundSize = "cover";
+        mainDisplay.style.backgroundPosition = "center";
+        mainDisplay.style.backgroundRepeat = "no-repeat";
+        console.log('🎨 背景图片已设置:', mainDisplay.style.backgroundImage);
+    } else if (mainDisplay) {
+        console.log('📝 没有背景图片，使用默认半透明背景');
+        // 如果没有背景图片，移除背景图片但保持默认的半透明背景
+        mainDisplay.style.backgroundImage = "";
+        // 确保默认的半透明背景生效
+        mainDisplay.style.background = "linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 100%)";
+    } else {
+        console.log('❌ 没有找到主显示区域');
+    }
 }
 
 // 更新缩略图
