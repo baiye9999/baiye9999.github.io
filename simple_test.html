@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>睡不着打给我 - 测试</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #FFB6C1;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .hero {
+            padding-top: 80px;
+            background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .members-section {
+            padding: 80px 0;
+            background: #FFF0F5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #FF69B4;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .member-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
+        }
+        
+        .member-avatar img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        
+        .member-info h3 {
+            font-size: 1.5rem;
+            color: #FF69B4;
+            margin-bottom: 10px;
+        }
+        
+        .member-role {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                🐱 睡不着打给我
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">首页</a></li>
+                <li><a href="#videos" class="nav-link">百业混剪</a></li>
+                <li><a href="#activities" class="nav-link">百业活动</a></li>
+                <li><a href="#members" class="nav-link">百业人员</a></li>
+                <li><a href="#join" class="nav-link">加入我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="hero">
+        <div>
+            <h1>睡不着打给我</h1>
+            <p>展示各流派咸鱼人生的风采</p>
+            <p>我们相信，每个人都有自己的独特价值</p>
+        </div>
+    </section>
+
+    <!-- 百业人员 -->
+    <section id="members" class="members-section">
+        <div class="container">
+            <h2 class="section-title">百业人员</h2>
+            <p class="section-subtitle">精英人才，各展风采</p>
+            
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="images/members/member-songrentang.svg" alt="请叫我非酋">
+                    </div>
+                    <div class="member-info">
+                        <h3>请叫我非酋</h3>
+                        <p class="member-role">社长</p>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="images/members/member-2.svg" alt="成员2">
+                    </div>
+                    <div class="member-info">
+                        <h3>成员2</h3>
+                        <p class="member-role">副社长</p>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-avatar">
+                        <img src="images/members/member-1.svg" alt="花田公主">
+                    </div>
+                    <div class="member-info">
+                        <h3>花田公主</h3>
+                        <p class="member-role">核心成员</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy;2025 睡不着打给我，保留所有权</p>
+        </div>
+    </footer>
+</body>
+</html>
