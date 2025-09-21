@@ -1,0 +1,35 @@
+<svg width="1200" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB6C1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFC0CB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF69B4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="text1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE4E1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="1200" height="400" fill="url(#bg1)"/>
+  
+  <!-- 装饰性圆形 -->
+  <circle cx="200" cy="100" r="80" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="1000" cy="300" r="120" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="300" cy="350" r="60" fill="rgba(255,255,255,0.25)"/>
+  
+  <!-- 小猫图标 -->
+  <text x="100" y="200" font-family="Arial, sans-serif" font-size="120" fill="url(#text1)">🐱</text>
+  <text x="100" y="320" font-family="Arial, sans-serif" font-size="120" fill="url(#text1)">🌙</text>
+  
+  <!-- 主标题 -->
+  <text x="300" y="150" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#text1)">睡不着打给我</text>
+  <text x="300" y="200" font-family="Arial, sans-serif" font-size="24" fill="url(#text1)">深夜电台 · 百业组织</text>
+  <text x="300" y="250" font-family="Arial, sans-serif" font-size="18" fill="url(#text1)">陪伴每一个不眠的夜晚</text>
+  
+  <!-- 装饰性星星 -->
+  <text x="800" y="100" font-family="Arial, sans-serif" font-size="30" fill="rgba(255,255,255,0.8)">✨</text>
+  <text x="900" y="150" font-family="Arial, sans-serif" font-size="25" fill="rgba(255,255,255,0.7)">⭐</text>
+  <text x="850" y="250" font-family="Arial, sans-serif" font-size="35" fill="rgba(255,255,255,0.6)">💫</text>
+</svg>

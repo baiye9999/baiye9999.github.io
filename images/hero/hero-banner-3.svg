@@ -1,0 +1,36 @@
+<svg width="1200" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFC0CB;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFB6C1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA0B4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="text3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE4E1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="1200" height="400" fill="url(#bg3)"/>
+  
+  <!-- 装饰性花朵 -->
+  <text x="100" y="100" font-family="Arial, sans-serif" font-size="50" fill="rgba(255,255,255,0.4)">🌸</text>
+  <text x="1100" y="150" font-family="Arial, sans-serif" font-size="45" fill="rgba(255,255,255,0.3)">🌺</text>
+  <text x="150" y="350" font-family="Arial, sans-serif" font-size="55" fill="rgba(255,255,255,0.5)">🌻</text>
+  <text x="1000" y="320" font-family="Arial, sans-serif" font-size="40" fill="rgba(255,255,255,0.4)">🌷</text>
+  
+  <!-- 主标题 -->
+  <text x="350" y="130" font-family="Arial, sans-serif" font-size="50" font-weight="bold" fill="url(#text3)">百业活动</text>
+  <text x="350" y="180" font-family="Arial, sans-serif" font-size="26" fill="url(#text3)">精彩活动 · 等你参与</text>
+  <text x="350" y="230" font-family="Arial, sans-serif" font-size="18" fill="url(#text3)">加入我们的大家庭</text>
+  
+  <!-- 活动图标 -->
+  <text x="750" y="120" font-family="Arial, sans-serif" font-size="35" fill="rgba(255,255,255,0.8)">🎪</text>
+  <text x="850" y="180" font-family="Arial, sans-serif" font-size="30" fill="rgba(255,255,255,0.7)">🎨</text>
+  <text x="800" y="250" font-family="Arial, sans-serif" font-size="40" fill="rgba(255,255,255,0.6)">🎭</text>
+  
+  <!-- 装饰性云朵 -->
+  <ellipse cx="200" cy="80" rx="60" ry="30" fill="rgba(255,255,255,0.2)"/>
+  <ellipse cx="1000" cy="90" rx="80" ry="35" fill="rgba(255,255,255,0.15)"/>
+</svg>
