@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>睡不着打给我 - 百业风云录</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="https://www.yysls.cn/favicon.ico" />
+    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js" onerror="console.warn('LA统计库加载失败，跳过统计功能')"></script>
+    <script>
+        // 等待LA库加载完成后再初始化
+        window.addEventListener('load', function() {
+            if (typeof LA !== 'undefined') {
+                try {
+                    LA.init({id:"3NXJX6Ky6FOo8piO",ck:"3NXJX6Ky6FOo8piO"});
+                    console.log('LA统计库初始化成功');
+                } catch (error) {
+                    console.warn('LA统计库初始化失败:', error);
+                }
+            } else {
+                console.warn('LA库未加载成功，跳过初始化');
+            }
+        });
+    </script>
+    
+  <script type="module" crossorigin src="/assets/main-CVazUdAt.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-Dehy9T6m.css">
+  <link rel="stylesheet" crossorigin href="/assets/style-BOBYWHI7.css">
+</head>
+<script>
+    if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('SW 已注册: ', reg.scope))
+        .catch(err => console.error('SW 注册失败: ', err));
+    });
+    }
+</script>
+<body>
+    <div id="app"></div>
+    
+</body>
+</html>
