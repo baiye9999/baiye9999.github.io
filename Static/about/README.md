@@ -26,19 +26,19 @@ Static/about/
 
 ```css
 .activity-card .card-background {
-  background-image: url('/Static/about/1.jpg');
+  background-image: url('/Static/about/1.avif');
 }
 
 .team-card .card-background {
-  background-image: url('/Static/about/2.jpg');
+  background-image: url('/Static/about/2.avif');
 }
 
 .content-card .card-background {
-  background-image: url('/Static/about/3.jpg');
+  background-image: url('/Static/about/3.avif');
 }
 
 .cooperation-card .card-background {
-  background-image: url('/Static/about/4.jpg');
+  background-image: url('/Static/about/4.avif');
 }
 ```
 

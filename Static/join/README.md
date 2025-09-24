@@ -35,7 +35,7 @@ Static/join/
 
 ```html
 <!-- 在模板中 -->
-<img src="/Static/join/weixinqun.jpg" alt="微信群二维码" class="qr-code" />
+<img src="/Static/join/weixinqun.avif" alt="微信群二维码" class="qr-code" />
 
 <!-- 在CSS中 -->
 .qr-code {
